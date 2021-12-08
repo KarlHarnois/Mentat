@@ -4,7 +4,7 @@ struct MonthYearPicker: View {
     @Binding var monthYear: MonthYear
 
     var body: some View {
-        HStack(spacing: 0) {
+        Group {
             monthPicker
             yearPicker
         }
@@ -20,7 +20,7 @@ struct MonthYearPicker: View {
 
     private var yearPicker: some View {
         Picker("Year", selection: yearBinding) {
-            ForEach(2015...2040, id: \.self) { year in
+            ForEach(2019...2030, id: \.self) { year in
                 Text(String(year))
             }
         }

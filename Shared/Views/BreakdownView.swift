@@ -6,13 +6,15 @@ struct BreakdownView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                List {
-                    expenseSummarySection
+            List {
+                if viewModel.state.isPresentingMonthYearPicker {
+                    monthPicker
+                }
 
-                    if let breakdown = viewModel.state.breakdown {
-                        sections(for: breakdown)
-                    }
+                expenseSummarySection
+
+                if let breakdown = viewModel.state.breakdown {
+                    sections(for: breakdown)
                 }
             }
             .listStyle(.insetGrouped)
@@ -21,6 +23,12 @@ struct BreakdownView: View {
             .onLoad {
                 viewModel.send(.refresh)
             }
+        }
+    }
+
+    private var monthPicker: some View {
+        Section {
+            MonthYearPicker(monthYear: $settings.monthYear)
         }
     }
 
@@ -106,22 +114,9 @@ struct BreakdownView: View {
 
     private var monthYearButton: some View {
         Button {
-            viewModel.state.isPresentingMonthYearPicker = true
+            viewModel.state.isPresentingMonthYearPicker.toggle()
         } label: {
             Text(viewModel.state.monthYear.formatted(.short))
-        }
-        .sheet(isPresented: $viewModel.state.isPresentingMonthYearPicker) {
-            monthPicker
-        }
-    }
-
-    private var monthPicker: some View {
-        NavigationView {
-            MonthYearPicker(monthYear: $settings.monthYear)
-                .navigationTitle("Month Picker")
-                .navigationBarItems(trailing: Button("Close") {
-                    viewModel.state.isPresentingMonthYearPicker = false
-                })
         }
     }
 
