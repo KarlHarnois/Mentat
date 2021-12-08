@@ -25,7 +25,8 @@ struct RootView: View {
     var body: some View {
         let viewModel = BreakdownViewModel(props: .init(
             transactionRepo: transactionRepo,
-            envelopeRepo: envelopeRepo
+            envelopeRepo: envelopeRepo,
+            settings: settings
         ))
 
         BreakdownView(viewModel: viewModel)

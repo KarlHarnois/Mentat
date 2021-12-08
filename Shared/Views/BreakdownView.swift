@@ -2,19 +2,22 @@ import SwiftUI
 
 struct BreakdownView: View {
     @StateObject var viewModel: BreakdownViewModel
+    @EnvironmentObject var settings: Settings
 
     var body: some View {
         NavigationView {
-            List {
-                expenseSummarySection
+            ZStack {
+                List {
+                    expenseSummarySection
 
-                if let breakdown = viewModel.state.breakdown {
-                    sections(for: breakdown)
+                    if let breakdown = viewModel.state.breakdown {
+                        sections(for: breakdown)
+                    }
                 }
             }
             .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
-            .navigationBarItems(trailing: settingsButton)
+            .navigationBarItems(leading: monthYearButton,trailing: settingsButton)
             .onLoad {
                 viewModel.send(.refresh)
             }
@@ -101,9 +104,30 @@ struct BreakdownView: View {
         return Text(string)
     }
 
+    private var monthYearButton: some View {
+        Button {
+            viewModel.state.isPresentingMonthYearPicker = true
+        } label: {
+            Text(viewModel.state.monthYear.formatted(.short))
+        }
+        .sheet(isPresented: $viewModel.state.isPresentingMonthYearPicker) {
+            monthPicker
+        }
+    }
+
+    private var monthPicker: some View {
+        NavigationView {
+            MonthYearPicker(monthYear: $settings.monthYear)
+                .navigationTitle("Month Picker")
+                .navigationBarItems(trailing: Button("Close") {
+                    viewModel.state.isPresentingMonthYearPicker = false
+                })
+        }
+    }
+
     private var settingsButton: some View {
         Button {
-            viewModel.send(.showSettings)
+            viewModel.state.isPresentingSettings = true
         } label: {
             Image(systemName: "slider.horizontal.3")
         }

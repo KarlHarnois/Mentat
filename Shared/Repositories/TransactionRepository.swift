@@ -10,12 +10,11 @@ import Foundation
         self.client = client
     }
 
-    func fetchTransactions(month: Month, year: Int) async throws {
+    func fetchTransactions(monthYear: MonthYear) async throws {
         let downloader = TransactionDownloader(client: client)
-        let response = try await downloader.fetchTransaction(month: month, year: year)
-        let key = MonthYear(month: month, year: year)
+        let response = try await downloader.fetchTransaction(month: monthYear.month, year: monthYear.year)
 
-        transactionsByMonthYear[key] = response.transactions
-        categoryBreakdownByMonthYear[key] = response.breakdown
+        transactionsByMonthYear[monthYear] = response.transactions
+        categoryBreakdownByMonthYear[monthYear] = response.breakdown
     }
 }

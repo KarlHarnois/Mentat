@@ -77,6 +77,10 @@
 		CBBB4B1427553C4D001F5F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBB4AEA27553C4D001F5F63 /* Assets.xcassets */; };
 		CBBB4B1527553C4D001F5F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBB4AEA27553C4D001F5F63 /* Assets.xcassets */; };
 		CBBB4B2D2755451B001F5F63 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBB4AE927553C48001F5F63 /* RootView.swift */; };
+		CBC24E7F2760D8B500B2A796 /* MonthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E7E2760D8B500B2A796 /* MonthTests.swift */; };
+		CBC24E812760D95900B2A796 /* MonthYearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E802760D95900B2A796 /* MonthYearTests.swift */; };
+		CBC24E842760DAD600B2A796 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */; };
+		CBC24E852760DAD700B2A796 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */; };
 		CBFA684D2757E5C7009FD554 /* Error+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA684C2757E5C7009FD554 /* Error+extension.swift */; };
 		CBFA684E2757E5C7009FD554 /* Error+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA684C2757E5C7009FD554 /* Error+extension.swift */; };
 		CBFA68532757EA42009FD554 /* CurlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA68522757EA42009FD554 /* CurlBuilder.swift */; };
@@ -188,6 +192,9 @@
 		CBBB4B0827553C4D001F5F63 /* UI Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBB4B0C27553C4D001F5F63 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		CBBB4B0E27553C4D001F5F63 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		CBC24E7E2760D8B500B2A796 /* MonthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTests.swift; sourceTree = "<group>"; };
+		CBC24E802760D95900B2A796 /* MonthYearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearTests.swift; sourceTree = "<group>"; };
+		CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
 		CBFA684C2757E5C7009FD554 /* Error+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+extension.swift"; sourceTree = "<group>"; };
 		CBFA68522757EA42009FD554 /* CurlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlBuilder.swift; sourceTree = "<group>"; };
 		CBFA68562757EA6E009FD554 /* CurlComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlComponent.swift; sourceTree = "<group>"; };
@@ -283,6 +290,8 @@
 			isa = PBXGroup;
 			children = (
 				CB03FF8327554ABD00AF4262 /* TransactionTests.swift */,
+				CBC24E7E2760D8B500B2A796 /* MonthTests.swift */,
+				CBC24E802760D95900B2A796 /* MonthYearTests.swift */,
 				CBFA687C275817C8009FD554 /* Reports */,
 			);
 			path = Models;
@@ -477,6 +486,7 @@
 				CB5C7B3A2755CE2400552511 /* BreakdownView.swift */,
 				CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */,
 				CB6A40C72759A82800624502 /* SettingsScreen.swift */,
+				CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -710,7 +720,9 @@
 			files = (
 				CB03FFCD275593FE00AF4262 /* MockNetworkingSession.swift in Sources */,
 				CB03FF9227554C8000AF4262 /* TransactionTests.swift in Sources */,
+				CBC24E7F2760D8B500B2A796 /* MonthTests.swift in Sources */,
 				CB03FFAE27557A1300AF4262 /* SecretsTests.swift in Sources */,
+				CBC24E812760D95900B2A796 /* MonthYearTests.swift in Sources */,
 				CB03FFD127559A1700AF4262 /* TransactionServiceClientTests.swift in Sources */,
 				CBFA687E275817D6009FD554 /* CategoryBreakdownReportTests.swift in Sources */,
 			);
@@ -731,6 +743,7 @@
 				CB03FFA42755674200AF4262 /* JSONEncoder+extension.swift in Sources */,
 				CB5C7B382755CBD100552511 /* MoneyFormatter.swift in Sources */,
 				CBFA686C2757F6CB009FD554 /* ConsoleLogger.swift in Sources */,
+				CBC24E842760DAD600B2A796 /* MonthYearPicker.swift in Sources */,
 				CBFA6891275969F8009FD554 /* Envelope.swift in Sources */,
 				CB9F099D2756F24000B9344B /* AppLauncher.swift in Sources */,
 				CB03FF802755495600AF4262 /* Subcategory.swift in Sources */,
@@ -781,6 +794,7 @@
 				CB03FF962755534600AF4262 /* CapitalizedStringCodable.swift in Sources */,
 				CBFA6881275878DD009FD554 /* Month.swift in Sources */,
 				CB5D82092756F7B100C12E13 /* JSONEncoder+extension.swift in Sources */,
+				CBC24E852760DAD700B2A796 /* MonthYearPicker.swift in Sources */,
 				CBFA68712757F91B009FD554 /* CategoryBreakdownReport.swift in Sources */,
 				CBFA684E2757E5C7009FD554 /* Error+extension.swift in Sources */,
 				CBFA688E27596731009FD554 /* ExpenseSummaryView.swift in Sources */,

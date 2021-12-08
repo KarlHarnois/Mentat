@@ -1,7 +1,7 @@
 import Combine
 
 @MainActor final class BreakdownViewModel: ObservableObject {
-    @Published var state = State()
+    @Published var state: State
 
     private let props: Props
     private var cancellables = Set<AnyCancellable>()
@@ -9,21 +9,24 @@ import Combine
     struct Props {
         let transactionRepo: TransactionRepository
         let envelopeRepo: EnvelopeRepository
+        let settings: Settings
     }
 
     enum Action {
         case refresh
-        case showSettings
     }
 
     struct State {
+        var monthYear: MonthYear
         var error: IdentifiableError?
         var breakdown: CategoryBreakdownReport?
         var envelopes: [Category: Envelope] = [:]
+        var isPresentingMonthYearPicker = false
         var isPresentingSettings = false
     }
 
     init(props: Props) {
+        self.state = .init(monthYear: props.settings.monthYear)
         self.props = props
 
         props
@@ -35,11 +38,21 @@ import Combine
             .store(in: &cancellables)
 
         props
+            .settings
+            .$monthYear
+            .sink { [weak self] monthYear in
+                self?.state.monthYear = monthYear
+            }
+            .store(in: &cancellables)
+
+        props
             .transactionRepo
             .$categoryBreakdownByMonthYear
-            .sink { [weak self] breakdowns in
-                let key = MonthYear(month: .november, year: 2021)
-                self?.state.breakdown = breakdowns[key]
+            .combineLatest(props.settings.$monthYear) { breakdowns, monthYear in
+                breakdowns[monthYear]
+            }
+            .sink { [weak self] breakdown in
+                self?.state.breakdown = breakdown
             }
             .store(in: &cancellables)
     }
@@ -49,19 +62,13 @@ import Combine
         case .refresh:
             refreshTransactions()
             refreshEnvelopes()
-
-        case .showSettings:
-            state.isPresentingSettings = true
         }
     }
 
     private func refreshTransactions() {
         Task {
             do {
-                try await props.transactionRepo.fetchTransactions(
-                    month: .november,
-                    year: 2021
-                )
+                try await props.transactionRepo.fetchTransactions(monthYear: state.monthYear)
             } catch {
                 self.state.error = error.identifiable
             }
