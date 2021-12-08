@@ -34,19 +34,25 @@ import Combine
 
     func testMonthYearState() {
         let expected = MonthYear(month: .january, year: 1990)
+
+        settings.monthYear = expected
+
+        assertStateMatches { state in
+            state.monthYear == expected
+        }
+    }
+
+    private func assertStateMatches(matcher: @escaping (BreakdownViewModel.State) -> Bool) {
         let expectation = XCTestExpectation()
 
         subject
             .$state
-            .map(\.monthYear)
-            .filter { $0 == expected }
-            .sink {
-                XCTAssertEqual($0, expected)
+            .filter(matcher)
+            .sink { _ in
                 expectation.fulfill()
             }
             .store(in: &cancellables)
 
-        settings.monthYear = expected
         wait(for: [expectation], timeout: 5)
     }
 }
