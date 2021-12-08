@@ -1,4 +1,4 @@
-struct MonthYear: Hashable {
+struct MonthYear: Hashable, Codable {
     let month: Month
     let year: Int
 

@@ -1,6 +1,6 @@
 import Foundation
 
-enum Month: Int, CaseIterable {
+enum Month: Int, CaseIterable, Codable {
     case january = 1,
          february,
          march,
@@ -18,5 +18,11 @@ enum Month: Int, CaseIterable {
         let formatter = DateFormatter()
         let index = rawValue - 1
         return formatter.shortMonthSymbols[index]
+    }
+
+    var longName: String {
+        let formatter = DateFormatter()
+        let index = rawValue - 1
+        return formatter.monthSymbols[index]
     }
 }

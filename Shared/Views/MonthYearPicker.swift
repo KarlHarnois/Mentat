@@ -13,7 +13,7 @@ struct MonthYearPicker: View {
     private var monthPicker: some View {
         Picker("Month", selection: monthBinding) {
             ForEach(Month.allCases, id: \.self) { month in
-                Text(month.shortName)
+                Text(month.longName)
             }
         }
     }
