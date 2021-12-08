@@ -7,28 +7,36 @@ struct BreakdownView: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    ExpenseSummaryView(breakdown: viewModel.state.breakdown)
-                        .listRowBackground(Color.clear)
-                }
+                expenseSummarySection
 
                 if let breakdown = viewModel.state.breakdown {
-                    Group {
-                        Section(header: Text("Triage")) {
-                            uncategorizedExpenses(breakdown: breakdown)
-                        }
-
-                        ForEach(breakdown.categories) { category in
-                            section(for: category, breakdown: breakdown)
-                        }
-                    }
+                    sections(for: breakdown)
                 }
             }
             .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
-            .navigationBarItems(trailing: configureEnvelopeButton)
+            .navigationBarItems(trailing: settingsButton)
             .onLoad {
                 viewModel.send(.refresh)
+            }
+        }
+    }
+
+    private var expenseSummarySection: some View {
+        Section {
+            ExpenseSummaryView(breakdown: viewModel.state.breakdown)
+                .listRowBackground(Color.clear)
+        }
+    }
+
+    private func sections(for breakdown: CategoryBreakdownReport) -> some View {
+        Group {
+            Section(header: Text("Triage")) {
+                uncategorizedExpenses(breakdown: breakdown)
+            }
+
+            ForEach(breakdown.categories) { category in
+                section(for: category, breakdown: breakdown)
             }
         }
     }
@@ -43,14 +51,9 @@ struct BreakdownView: View {
                 let transactions = breakdown.transactions.filter {
                     $0.subcategory == subcategory && $0.category == category
                 }
-
-                NavigationLink(destination: list(for: transactions)) {
-                    HStack {
-                        Text(subcategory.rawValue.capitalized)
-                        Spacer()
-                        formattedMoney(breakdown.totalPerSubcategory[category]?[subcategory])
-                    }
-                }
+                let title = subcategory.rawValue.capitalized
+                let amount = breakdown.totalPerSubcategory[category]?[subcategory] ?? 0
+                row(title: title, centAmount: amount, transactions: transactions)
             }
 
             if let uncategorizedTotal = breakdown.uncategorizedTotalByCategory[category] {
@@ -58,13 +61,7 @@ struct BreakdownView: View {
                     $0.subcategory == nil && $0.category == category
                 }
 
-                NavigationLink(destination: list(for: transactions)) {
-                    HStack {
-                        Text("Other")
-                        Spacer()
-                        formattedMoney(uncategorizedTotal)
-                    }
-                }
+                row(title: "Other", centAmount: uncategorizedTotal, transactions: transactions)
             }
         }
     }
@@ -73,14 +70,18 @@ struct BreakdownView: View {
         Group {
             if breakdown.uncategorizedExpenseTotal > 0 {
                 let transactions = breakdown.transactions.filter { $0.category == nil }
+                let amount = breakdown.uncategorizedExpenseTotal
+                row(title: "Uncategorized", centAmount: amount, transactions: transactions)
+            }
+        }
+    }
 
-                NavigationLink(destination: list(for: transactions)) {
-                    HStack {
-                        Text("Uncategorized")
-                        Spacer()
-                        formattedMoney(breakdown.uncategorizedExpenseTotal)
-                    }
-                }
+    private func row(title: String, centAmount: Int, transactions: [Transaction]) -> some View {
+        NavigationLink(destination: list(for: transactions)) {
+            HStack {
+                Text(title)
+                Spacer()
+                formattedMoney(centAmount)
             }
         }
     }
@@ -101,7 +102,7 @@ struct BreakdownView: View {
         return Text(string)
     }
 
-    private var configureEnvelopeButton: some View {
+    private var settingsButton: some View {
         Button {
             viewModel.send(.showSettings)
         } label: {
