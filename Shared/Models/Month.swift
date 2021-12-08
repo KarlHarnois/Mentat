@@ -15,14 +15,18 @@ enum Month: Int, CaseIterable, Codable {
          december
 
     var shortName: String {
-        let formatter = DateFormatter()
-        let index = rawValue - 1
-        return formatter.shortMonthSymbols[index]
+        formatter.shortMonthSymbols[index]
     }
 
     var longName: String {
-        let formatter = DateFormatter()
-        let index = rawValue - 1
-        return formatter.monthSymbols[index]
+        formatter.monthSymbols[index]
+    }
+
+    private var index: Int {
+        rawValue - 1
+    }
+
+    private var formatter: DateFormatter {
+        .init()
     }
 }
