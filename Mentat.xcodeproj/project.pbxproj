@@ -81,6 +81,10 @@
 		CBC24E812760D95900B2A796 /* MonthYearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E802760D95900B2A796 /* MonthYearTests.swift */; };
 		CBC24E842760DAD600B2A796 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */; };
 		CBC24E852760DAD700B2A796 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */; };
+		CBC24E912760F42600B2A796 /* BreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E902760F42600B2A796 /* BreakdownViewModelTests.swift */; };
+		CBC24E952760F5BC00B2A796 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E932760F53800B2A796 /* Storage.swift */; };
+		CBC24E962760F5BD00B2A796 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E932760F53800B2A796 /* Storage.swift */; };
+		CBC24E982760F67100B2A796 /* MockStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC24E972760F67100B2A796 /* MockStorage.swift */; };
 		CBFA684D2757E5C7009FD554 /* Error+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA684C2757E5C7009FD554 /* Error+extension.swift */; };
 		CBFA684E2757E5C7009FD554 /* Error+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA684C2757E5C7009FD554 /* Error+extension.swift */; };
 		CBFA68532757EA42009FD554 /* CurlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA68522757EA42009FD554 /* CurlBuilder.swift */; };
@@ -195,6 +199,9 @@
 		CBC24E7E2760D8B500B2A796 /* MonthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTests.swift; sourceTree = "<group>"; };
 		CBC24E802760D95900B2A796 /* MonthYearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearTests.swift; sourceTree = "<group>"; };
 		CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
+		CBC24E902760F42600B2A796 /* BreakdownViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownViewModelTests.swift; sourceTree = "<group>"; };
+		CBC24E932760F53800B2A796 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		CBC24E972760F67100B2A796 /* MockStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorage.swift; sourceTree = "<group>"; };
 		CBFA684C2757E5C7009FD554 /* Error+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+extension.swift"; sourceTree = "<group>"; };
 		CBFA68522757EA42009FD554 /* CurlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlBuilder.swift; sourceTree = "<group>"; };
 		CBFA68562757EA6E009FD554 /* CurlComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlComponent.swift; sourceTree = "<group>"; };
@@ -302,6 +309,7 @@
 				CB03FF8227554AB100AF4262 /* Models */,
 				CB03FFCB275593F500AF4262 /* Mocks */,
 				CB03FFCE275599AD00AF4262 /* Networking */,
+				CBC24E8F2760F41500B2A796 /* ViewModels */,
 				CB03FFAC27557A0500AF4262 /* Utils */,
 			);
 			path = "Unit Tests";
@@ -365,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				CB03FFCC275593FE00AF4262 /* MockNetworkingSession.swift */,
+				CBC24E972760F67100B2A796 /* MockStorage.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -421,10 +430,11 @@
 			children = (
 				CB9F099C2756F24000B9344B /* AppLauncher.swift */,
 				CBBB4AE827553C48001F5F63 /* MentatApp.swift */,
-				CB5D822527572AC400C12E13 /* ViewModels */,
-				CB5D822127572A9200C12E13 /* Repositories */,
 				CB03FF752755481100AF4262 /* Models */,
 				CB03FF742755480A00AF4262 /* Networking */,
+				CB5D822127572A9200C12E13 /* Repositories */,
+				CBC24E922760F50900B2A796 /* Storage */,
+				CB5D822527572AC400C12E13 /* ViewModels */,
 				CBBB4B2A275544BB001F5F63 /* Views */,
 				CB03FFA72755781500AF4262 /* Utils */,
 				CBBB4AEA27553C4D001F5F63 /* Assets.xcassets */,
@@ -489,6 +499,22 @@
 				CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CBC24E8F2760F41500B2A796 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CBC24E902760F42600B2A796 /* BreakdownViewModelTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CBC24E922760F50900B2A796 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				CBC24E932760F53800B2A796 /* Storage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		CBFA68552757EA45009FD554 /* Logging */ = {
@@ -721,7 +747,9 @@
 				CB03FFCD275593FE00AF4262 /* MockNetworkingSession.swift in Sources */,
 				CB03FF9227554C8000AF4262 /* TransactionTests.swift in Sources */,
 				CBC24E7F2760D8B500B2A796 /* MonthTests.swift in Sources */,
+				CBC24E982760F67100B2A796 /* MockStorage.swift in Sources */,
 				CB03FFAE27557A1300AF4262 /* SecretsTests.swift in Sources */,
+				CBC24E912760F42600B2A796 /* BreakdownViewModelTests.swift in Sources */,
 				CBC24E812760D95900B2A796 /* MonthYearTests.swift in Sources */,
 				CB03FFD127559A1700AF4262 /* TransactionServiceClientTests.swift in Sources */,
 				CBFA687E275817D6009FD554 /* CategoryBreakdownReportTests.swift in Sources */,
@@ -737,6 +765,7 @@
 				CB5C7B3C2755CE8800552511 /* BreakdownView.swift in Sources */,
 				CB03FFC82755932600AF4262 /* NetworkingSession.swift in Sources */,
 				CB03FF972755534700AF4262 /* CapitalizedStringCodable.swift in Sources */,
+				CBC24E952760F5BC00B2A796 /* Storage.swift in Sources */,
 				CBFA68532757EA42009FD554 /* CurlBuilder.swift in Sources */,
 				CB03FF7A2755492800AF4262 /* TransactionSource.swift in Sources */,
 				CB03FF772755490500AF4262 /* TransactionTimestamps.swift in Sources */,
@@ -800,6 +829,7 @@
 				CBFA688E27596731009FD554 /* ExpenseSummaryView.swift in Sources */,
 				CB6A40CB2759AB1A00624502 /* Settings.swift in Sources */,
 				CBFA68582757EA6E009FD554 /* CurlComponent.swift in Sources */,
+				CBC24E962760F5BD00B2A796 /* Storage.swift in Sources */,
 				CB03FF7B2755492800AF4262 /* TransactionSource.swift in Sources */,
 				CB5D82152756F7C100C12E13 /* Request.swift in Sources */,
 				CB5D822427572A9B00C12E13 /* TransactionRepository.swift in Sources */,

@@ -4,9 +4,9 @@ import Foundation
 @MainActor final class EnvelopeRepository: ObservableObject {
     @Published private(set) var envelopes: [Category: Envelope] = [:]
 
-    private let storage: UserDefaults
+    private let storage: Storage
 
-    init(storage: UserDefaults) {
+    init(storage: Storage) {
         self.storage = storage
     }
 

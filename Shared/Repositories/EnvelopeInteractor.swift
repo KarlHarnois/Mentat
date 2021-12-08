@@ -1,10 +1,10 @@
 import Foundation
 
 actor EnvelopeInteractor {
-    private let storage: UserDefaults
+    private let storage: Storage
     private let storageKeyPrefix = "MENTAT_ENVELOPES"
 
-    init(storage: UserDefaults) {
+    init(storage: Storage) {
         self.storage = storage
     }
 
@@ -22,7 +22,7 @@ actor EnvelopeInteractor {
 
     func save(_ envelope: Envelope) async throws {
         let data = try JSONEncoder.custom.encode(envelope)
-        storage.set(data, forKey: key(for: envelope.category))
+        storage.save(data, forKey: key(for: envelope.category))
     }
 
     private func key(for category: Category) -> String {
