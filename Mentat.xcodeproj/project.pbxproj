@@ -270,7 +270,6 @@
 		CB03FF752755481100AF4262 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CB6A40C92759AA1300624502 /* Settings.swift */,
 				CB03FF712755480600AF4262 /* Transaction.swift */,
 				CB03FF762755490500AF4262 /* TransactionTimestamps.swift */,
 				CB03FF792755492800AF4262 /* TransactionSource.swift */,
@@ -332,6 +331,7 @@
 		CB03FFA72755781500AF4262 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CB6A40C92759AA1300624502 /* Settings.swift */,
 				CB03FFA82755782600AF4262 /* Secrets.swift */,
 				CB5C7B2E2755A71E00552511 /* Factory.swift */,
 				CB5C7B342755CA1900552511 /* MoneyFormatter.swift */,

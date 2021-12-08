@@ -40,8 +40,10 @@ import Combine
         props
             .settings
             .$monthYear
+            .removeDuplicates()
             .sink { [weak self] monthYear in
                 self?.state.monthYear = monthYear
+                self?.refreshTransactions()
             }
             .store(in: &cancellables)
 
