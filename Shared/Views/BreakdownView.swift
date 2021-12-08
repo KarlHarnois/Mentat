@@ -8,7 +8,7 @@ struct BreakdownView: View {
         NavigationView {
             List {
                 if viewModel.state.isPresentingMonthYearPicker {
-                    monthPicker
+                    monthYearPicker
                 }
 
                 expenseSummarySection
@@ -26,7 +26,7 @@ struct BreakdownView: View {
         }
     }
 
-    private var monthPicker: some View {
+    private var monthYearPicker: some View {
         Section {
             MonthYearPicker(monthYear: $settings.monthYear)
         }
