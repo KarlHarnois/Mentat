@@ -2,7 +2,6 @@ import SwiftUI
 
 struct BreakdownView: View {
     @StateObject var viewModel: BreakdownViewModel
-    @State private var isPresentingConfiguration = false
 
     var body: some View {
         NavigationView {
