@@ -2,33 +2,51 @@ import SwiftUI
 
 struct BreakdownView: View {
     @StateObject var viewModel: BreakdownViewModel
-    @State private var isPresentingConfiguration = false
+    @EnvironmentObject var settings: Settings
 
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    ExpenseSummaryView(breakdown: viewModel.state.breakdown)
-                        .listRowBackground(Color.clear)
+                if viewModel.state.isPresentingMonthYearPicker {
+                    monthYearPicker
                 }
 
-                if let breakdown = viewModel.state.breakdown {
-                    Group {
-                        Section(header: Text("Triage")) {
-                            uncategorizedExpenses(breakdown: breakdown)
-                        }
+                expenseSummarySection
 
-                        ForEach(breakdown.categories) { category in
-                            section(for: category, breakdown: breakdown)
-                        }
-                    }
+                if let breakdown = viewModel.state.breakdown {
+                    sections(for: breakdown)
                 }
             }
             .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
-            .navigationBarItems(trailing: configureEnvelopeButton)
+            .navigationBarItems(leading: monthYearButton,trailing: settingsButton)
             .onLoad {
                 viewModel.send(.refresh)
+            }
+        }
+    }
+
+    private var monthYearPicker: some View {
+        Section {
+            MonthYearPicker(monthYear: $settings.monthYear)
+        }
+    }
+
+    private var expenseSummarySection: some View {
+        Section {
+            ExpenseSummaryView(breakdown: viewModel.state.breakdown)
+                .listRowBackground(Color.clear)
+        }
+    }
+
+    private func sections(for breakdown: CategoryBreakdownReport) -> some View {
+        Group {
+            Section(header: Text("Triage")) {
+                uncategorizedExpenses(breakdown: breakdown)
+            }
+
+            ForEach(breakdown.categories) { category in
+                section(for: category, breakdown: breakdown)
             }
         }
     }
@@ -43,14 +61,9 @@ struct BreakdownView: View {
                 let transactions = breakdown.transactions.filter {
                     $0.subcategory == subcategory && $0.category == category
                 }
-
-                NavigationLink(destination: list(for: transactions)) {
-                    HStack {
-                        Text(subcategory.rawValue.capitalized)
-                        Spacer()
-                        formattedMoney(breakdown.totalPerSubcategory[category]?[subcategory])
-                    }
-                }
+                let title = subcategory.rawValue.capitalized
+                let amount = breakdown.totalPerSubcategory[category]?[subcategory] ?? 0
+                row(title: title, centAmount: amount, transactions: transactions)
             }
 
             if let uncategorizedTotal = breakdown.uncategorizedTotalByCategory[category] {
@@ -58,13 +71,7 @@ struct BreakdownView: View {
                     $0.subcategory == nil && $0.category == category
                 }
 
-                NavigationLink(destination: list(for: transactions)) {
-                    HStack {
-                        Text("Other")
-                        Spacer()
-                        formattedMoney(uncategorizedTotal)
-                    }
-                }
+                row(title: "Other", centAmount: uncategorizedTotal, transactions: transactions)
             }
         }
     }
@@ -73,14 +80,18 @@ struct BreakdownView: View {
         Group {
             if breakdown.uncategorizedExpenseTotal > 0 {
                 let transactions = breakdown.transactions.filter { $0.category == nil }
+                let amount = breakdown.uncategorizedExpenseTotal
+                row(title: "Uncategorized", centAmount: amount, transactions: transactions)
+            }
+        }
+    }
 
-                NavigationLink(destination: list(for: transactions)) {
-                    HStack {
-                        Text("Uncategorized")
-                        Spacer()
-                        formattedMoney(breakdown.uncategorizedExpenseTotal)
-                    }
-                }
+    private func row(title: String, centAmount: Int, transactions: [Transaction]) -> some View {
+        NavigationLink(destination: list(for: transactions)) {
+            HStack {
+                Text(title)
+                Spacer()
+                formattedMoney(centAmount)
             }
         }
     }
@@ -101,9 +112,17 @@ struct BreakdownView: View {
         return Text(string)
     }
 
-    private var configureEnvelopeButton: some View {
+    private var monthYearButton: some View {
         Button {
-            viewModel.send(.showSettings)
+            viewModel.state.isPresentingMonthYearPicker.toggle()
+        } label: {
+            Text(viewModel.state.monthYear.formatted(.short))
+        }
+    }
+
+    private var settingsButton: some View {
+        Button {
+            viewModel.state.isPresentingSettings = true
         } label: {
             Image(systemName: "slider.horizontal.3")
         }

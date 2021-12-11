@@ -11,7 +11,7 @@ struct ExpenseSummaryView: View {
             Text(formattedTotal)
                 .bold()
                 .font(.system(size: 45))
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
         }
     }
 

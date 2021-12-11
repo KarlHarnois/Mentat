@@ -10,7 +10,7 @@ struct MoneyFormatter {
             switch currency {
             case .cad:
                 output += symbol
-            case .usd:
+            case .usd, .gbp:
                 output = symbol + output
             }
         }
@@ -23,7 +23,12 @@ struct MoneyFormatter {
     }
 
     private var symbol: String {
-        "$"
+        switch currency {
+        case .gbp:
+            return "£"
+        case .cad, .usd, .none:
+            return "$"
+        }
     }
 
     private func decimal(_ centAmount: Int) -> String {

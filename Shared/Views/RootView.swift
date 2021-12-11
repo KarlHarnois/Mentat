@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var settings = Settings()!
+    private var settings = Settings()!
 
-    @StateObject private var transactionRepo: TransactionRepository = {
+    @MainActor private var transactionRepo: TransactionRepository = {
         let url = try! Secrets.transactionServiceBaseURL.read()
         let apiKey = try! Secrets.transactionServiceApiKey.read()
 
@@ -17,7 +17,7 @@ struct RootView: View {
         return .init(client: client)
     }()
 
-    @StateObject private var envelopeRepo: EnvelopeRepository = {
+    @MainActor private var envelopeRepo: EnvelopeRepository = {
         let storage = UserDefaults.standard
         return .init(storage: storage)
     }()
@@ -25,7 +25,8 @@ struct RootView: View {
     var body: some View {
         let viewModel = BreakdownViewModel(props: .init(
             transactionRepo: transactionRepo,
-            envelopeRepo: envelopeRepo
+            envelopeRepo: envelopeRepo,
+            settings: settings
         ))
 
         BreakdownView(viewModel: viewModel)
