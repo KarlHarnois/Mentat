@@ -4,6 +4,6 @@ import XCTest
 final class MonthYearTests: XCTestCase {
     func testFormattedShort() {
         let subject = MonthYear(month: .august, year: 2021)
-        XCTAssertEqual(subject.formatted(.short), "Aug 21")
+        XCTAssertEqual(subject.formatted(.short), "Aug 2021")
     }
 }

@@ -9,7 +9,7 @@ struct MonthYear: Hashable, Codable {
     func formatted(_ style: FormatStyle) -> String {
         switch style {
         case .short:
-            return month.shortName + " " + String(year).dropFirst(2)
+            return month.shortName + " " + String(year)
         }
     }
 }
