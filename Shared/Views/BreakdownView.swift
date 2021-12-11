@@ -103,13 +103,7 @@ struct BreakdownView: View {
     }
 
     private func list(for transactions: [Transaction]) -> some View {
-        List(transactions) { transaction in
-            HStack {
-                Text(transaction.description)
-                Spacer()
-                formattedMoney(transaction.centAmount)
-            }
-        }
+        TransactionList(transactions: transactions, style: .fullDescription)
     }
 
     private func formattedMoney(_ centAmount: Int?) -> some View {

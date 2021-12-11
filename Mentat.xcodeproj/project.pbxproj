@@ -34,6 +34,8 @@
 		CB03FFC82755932600AF4262 /* NetworkingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFC6275592C900AF4262 /* NetworkingSession.swift */; };
 		CB03FFCD275593FE00AF4262 /* MockNetworkingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFCC275593FE00AF4262 /* MockNetworkingSession.swift */; };
 		CB03FFD127559A1700AF4262 /* TransactionServiceClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFD027559A1700AF4262 /* TransactionServiceClientTests.swift */; };
+		CB2394342765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
+		CB2394352765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB5C7B302755A73200552511 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B2E2755A71E00552511 /* Factory.swift */; };
 		CB5C7B362755CBC600552511 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B322755C9E300552511 /* Currency.swift */; };
 		CB5C7B372755CBC600552511 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B322755C9E300552511 /* Currency.swift */; };
@@ -171,6 +173,7 @@
 		CB03FFC6275592C900AF4262 /* NetworkingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingSession.swift; sourceTree = "<group>"; };
 		CB03FFCC275593FE00AF4262 /* MockNetworkingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkingSession.swift; sourceTree = "<group>"; };
 		CB03FFD027559A1700AF4262 /* TransactionServiceClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceClientTests.swift; sourceTree = "<group>"; };
+		CB2394332765050400CD9ACB /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		CB5C7B2E2755A71E00552511 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		CB5C7B322755C9E300552511 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		CB5C7B342755CA1900552511 /* MoneyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatter.swift; sourceTree = "<group>"; };
@@ -494,6 +497,7 @@
 				CBBB4AE927553C48001F5F63 /* RootView.swift */,
 				CB5D823027572B4C00C12E13 /* TransactionRow.swift */,
 				CB5C7B3A2755CE2400552511 /* BreakdownView.swift */,
+				CB2394332765050400CD9ACB /* TransactionList.swift */,
 				CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */,
 				CB6A40C72759A82800624502 /* SettingsScreen.swift */,
 				CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */,
@@ -770,6 +774,7 @@
 				CB03FF7A2755492800AF4262 /* TransactionSource.swift in Sources */,
 				CB03FF772755490500AF4262 /* TransactionTimestamps.swift in Sources */,
 				CB03FFA42755674200AF4262 /* JSONEncoder+extension.swift in Sources */,
+				CB2394342765050400CD9ACB /* TransactionList.swift in Sources */,
 				CB5C7B382755CBD100552511 /* MoneyFormatter.swift in Sources */,
 				CBFA686C2757F6CB009FD554 /* ConsoleLogger.swift in Sources */,
 				CBC24E842760DAD600B2A796 /* MonthYearPicker.swift in Sources */,
@@ -828,6 +833,7 @@
 				CBFA684E2757E5C7009FD554 /* Error+extension.swift in Sources */,
 				CBFA688E27596731009FD554 /* ExpenseSummaryView.swift in Sources */,
 				CB6A40CB2759AB1A00624502 /* Settings.swift in Sources */,
+				CB2394352765050400CD9ACB /* TransactionList.swift in Sources */,
 				CBFA68582757EA6E009FD554 /* CurlComponent.swift in Sources */,
 				CBC24E962760F5BD00B2A796 /* Storage.swift in Sources */,
 				CB03FF7B2755492800AF4262 /* TransactionSource.swift in Sources */,
