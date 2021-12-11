@@ -41,8 +41,14 @@ struct BreakdownView: View {
 
     private func sections(for breakdown: CategoryBreakdownReport) -> some View {
         Group {
-            Section(header: Text("Triage")) {
+            Section {
                 uncategorizedExpenses(breakdown: breakdown)
+
+                row(
+                    title: "All Transactions",
+                    centAmount: breakdown.expenseTotal,
+                    transactions: breakdown.transactions
+                )
             }
 
             ForEach(breakdown.categories) { category in
