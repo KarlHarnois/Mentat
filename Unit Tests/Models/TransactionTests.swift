@@ -88,6 +88,18 @@ final class TransationTests: XCTestCase {
         XCTAssertEqual(encodedTimestamps?["postedAt"] as? Int, 1620172800000)
     }
 
+    func testSortedByDay() {
+        let transactions: [Transaction] = [
+            try! .create(["id": "1", "timestamps": ["postedAt": 1638677878002]]),
+            try! .create(["id": "2", "timestamps": ["postedAt": 1638677878003]]),
+            try! .create(["id": "3", "timestamps": ["postedAt": 1638937078000]]),
+            try! .create(["id": "4", "timestamps": ["postedAt": 1638677878001]])
+        ]
+
+        let idsPerDay = transactions.sortedByDay().mapValues { $0.map(\.id) }
+        XCTAssertEqual(idsPerDay, [4: ["4", "1", "2"], 7: ["3"]])
+    }
+
     private func decodeTransaction() throws -> Transaction {
         let json = """
         {

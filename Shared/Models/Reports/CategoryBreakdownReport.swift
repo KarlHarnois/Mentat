@@ -14,8 +14,6 @@ struct CategoryBreakdownReport {
     private(set) var uncategorizedTotalByCategory: [Category: Int] = [:]
     private(set) var totalPerSubcategory: [Category: [Subcategory: Int]] = [:]
 
-    private(set) var transactionsPerDay: [Day: [Transaction]] = [:]
-
     init(transactions: [Transaction]) {
         self.transactions = transactions
 
@@ -26,7 +24,6 @@ struct CategoryBreakdownReport {
 
     private mutating func compute(_ transaction: Transaction) {
         total += transaction.centAmount
-        sortByDay(transaction)
 
         if isExpense(transaction) {
             addToExpenseAmount(transaction)
@@ -46,19 +43,6 @@ struct CategoryBreakdownReport {
         }
         add(subcategory, to: category)
         addToTotals(by: subcategory, in: category, amount: transaction.centAmount)
-    }
-
-    private mutating func sortByDay(_ transaction: Transaction) {
-        let day = Calendar.current.component(.day, from: transaction.timestamps.postedAt)
-        var list = transactionsPerDay[day] ?? []
-
-        if let index = list.firstIndex(where: { $0.timestamps.postedAt > transaction.timestamps.postedAt }) {
-            list.insert(transaction, at: index)
-        } else {
-            list.append(transaction)
-        }
-
-        transactionsPerDay[day] = list
     }
 
     private func isExpense(_ transaction: Transaction) -> Bool {
