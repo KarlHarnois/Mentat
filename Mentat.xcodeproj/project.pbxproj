@@ -38,6 +38,8 @@
 		CB2394352765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394412768055500CD9ACB /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394402768055400CD9ACB /* typealiases.swift */; };
 		CB2394422768055500CD9ACB /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394402768055400CD9ACB /* typealiases.swift */; };
+		CB239444276808CA00CD9ACB /* TransactionDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB239443276808CA00CD9ACB /* TransactionDay.swift */; };
+		CB239445276808CA00CD9ACB /* TransactionDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB239443276808CA00CD9ACB /* TransactionDay.swift */; };
 		CB5C7B302755A73200552511 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B2E2755A71E00552511 /* Factory.swift */; };
 		CB5C7B362755CBC600552511 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B322755C9E300552511 /* Currency.swift */; };
 		CB5C7B372755CBC600552511 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B322755C9E300552511 /* Currency.swift */; };
@@ -177,6 +179,7 @@
 		CB03FFD027559A1700AF4262 /* TransactionServiceClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceClientTests.swift; sourceTree = "<group>"; };
 		CB2394332765050400CD9ACB /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		CB2394402768055400CD9ACB /* typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typealiases.swift; sourceTree = "<group>"; };
+		CB239443276808CA00CD9ACB /* TransactionDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDay.swift; sourceTree = "<group>"; };
 		CB5C7B2E2755A71E00552511 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		CB5C7B322755C9E300552511 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		CB5C7B342755CA1900552511 /* MoneyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatter.swift; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 			children = (
 				CB2394402768055400CD9ACB /* typealiases.swift */,
 				CB03FF712755480600AF4262 /* Transaction.swift */,
+				CB239443276808CA00CD9ACB /* TransactionDay.swift */,
 				CB03FF762755490500AF4262 /* TransactionTimestamps.swift */,
 				CB03FF792755492800AF4262 /* TransactionSource.swift */,
 				CB03FF7C2755494500AF4262 /* Category.swift */,
@@ -783,6 +787,7 @@
 				CBFA686C2757F6CB009FD554 /* ConsoleLogger.swift in Sources */,
 				CBC24E842760DAD600B2A796 /* MonthYearPicker.swift in Sources */,
 				CBFA6891275969F8009FD554 /* Envelope.swift in Sources */,
+				CB239444276808CA00CD9ACB /* TransactionDay.swift in Sources */,
 				CB9F099D2756F24000B9344B /* AppLauncher.swift in Sources */,
 				CB03FF802755495600AF4262 /* Subcategory.swift in Sources */,
 				CB6A40C82759A82800624502 /* SettingsScreen.swift in Sources */,
@@ -867,6 +872,7 @@
 				CBFA689A27596B4E009FD554 /* EnvelopeInteractor.swift in Sources */,
 				CB5D822027572A1900C12E13 /* View+extension.swift in Sources */,
 				CB5D820E2756F7B600C12E13 /* LaunchArgument.swift in Sources */,
+				CB239445276808CA00CD9ACB /* TransactionDay.swift in Sources */,
 				CB5C7B372755CBC600552511 /* Currency.swift in Sources */,
 				CBFA685B2757EAEB009FD554 /* LoggerEvent.swift in Sources */,
 				CBFA686D2757F6CB009FD554 /* ConsoleLogger.swift in Sources */,
