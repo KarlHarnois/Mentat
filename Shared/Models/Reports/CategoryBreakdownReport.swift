@@ -14,7 +14,7 @@ struct CategoryBreakdownReport {
     private(set) var uncategorizedTotalByCategory: [Category: Int] = [:]
     private(set) var totalPerSubcategory: [Category: [Subcategory: Int]] = [:]
 
-    private(set) var transactionsPerDay: [Int: [Transaction]] = [:]
+    private(set) var transactionsPerDay: [Day: [Transaction]] = [:]
 
     init(transactions: [Transaction]) {
         self.transactions = transactions
