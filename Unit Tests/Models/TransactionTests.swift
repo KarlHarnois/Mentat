@@ -17,11 +17,11 @@ final class TransationTests: XCTestCase {
             source: .init(name: "Visa", last4: "4242"),
             isExpensed: false,
             timestamps: .init(
-                createdAt: nil,
-                updatedAt: nil,
+                createdAt: .init(),
+                updatedAt: .init(),
                 postedAt: .init(),
                 deletedAt: nil,
-                authorizedAt: nil
+                authorizedAt: .init()
             )
         )
     }
@@ -90,10 +90,18 @@ final class TransationTests: XCTestCase {
 
     func testSortedByDay() {
         let transactions: [Transaction] = [
-            try! .create(["id": "1", "timestamps": ["postedAt": 1638677878002]]),
-            try! .create(["id": "2", "timestamps": ["postedAt": 1638677878003]]),
-            try! .create(["id": "3", "timestamps": ["postedAt": 1638937078000]]),
-            try! .create(["id": "4", "timestamps": ["postedAt": 1638677878001]])
+            .create(id: "1", timestamps: .create(
+                authorizedAt: .init(day: 4, month: .december, year: 2021).flatMap { $0.adding(minutes: 2) }!
+            )),
+            .create(id: "2", timestamps: .create(
+                authorizedAt: .init(day: 4, month: .december, year: 2021).flatMap { $0.adding(minutes: 5) }!
+            )),
+            .create(id: "3", timestamps: .create(
+                authorizedAt: .init(day: 7, month: .december, year: 2021)!
+            )),
+            .create(id: "4", timestamps: .create(
+                authorizedAt: .init(day: 4, month: .december, year: 2021)!
+            ))
         ]
 
         let idsPerDay = transactions.sortedByDay().mapValues { $0.map(\.id) }

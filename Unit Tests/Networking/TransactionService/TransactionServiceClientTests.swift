@@ -49,8 +49,8 @@ final class TransactionServiceClientTests: XCTestCase {
         ))
 
         session.mockResponse(for: fetchRequest, payload: .success(.init(transactions: [
-            try Transaction.create(["id": "1"]),
-            try Transaction.create(["id": "2"])
+            .create(id: "1"),
+            .create(id: "2")
         ])))
 
         return try await subject.perform(fetchRequest)

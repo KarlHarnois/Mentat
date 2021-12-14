@@ -20,9 +20,7 @@ struct TransactionRow: View {
     }
 
     private var idLabel: some View {
-        let id = String(transaction.id.suffix(10))
-
-        return Text(id)
+        Text(transaction.id)
             .foregroundColor(.secondary)
             .font(.caption)
     }

@@ -12,19 +12,15 @@ struct Transaction: Identifiable, Codable, Equatable {
     let source: TransactionSource
     var isExpensed: Bool
     let timestamps: TransactionTimestamps
-
-    var day: Day {
-        Calendar.current.component(.day, from: timestamps.postedAt)
-    }
 }
 
 extension Array where Element == Transaction {
     func sortedByDay() -> [Day: [Transaction]] {
         reduce([:]) { accumulation, transaction in
-            let day = transaction.day
+            let day = transaction.timestamps.authorizedAt.day
 
             var list = accumulation[day] ?? []
-            list.insertByPostDate(transaction)
+            list.insertByAuthorizationDate(transaction)
 
             var copy = accumulation
             copy[day] = list
@@ -32,9 +28,9 @@ extension Array where Element == Transaction {
         }
     }
 
-    private mutating func insertByPostDate(_ transaction: Transaction) {
+    private mutating func insertByAuthorizationDate(_ transaction: Transaction) {
         let index = firstIndex(where: {
-            $0.timestamps.postedAt > transaction.timestamps.postedAt
+            $0.timestamps.authorizedAt > transaction.timestamps.authorizedAt
         })
 
         if let index = index {
@@ -44,3 +40,35 @@ extension Array where Element == Transaction {
         }
     }
 }
+
+#if DEBUG
+
+extension Transaction {
+    static func create(id: String = "id",
+                       description: String = "description",
+                       fullDescription: String = "fullDescription",
+                       category: Category? = nil,
+                       subcategory: Subcategory? = nil,
+                       centAmount: Int = 0,
+                       currency: Currency = .cad,
+                       currencyCentAmount: Int = 0,
+                       source: TransactionSource = .init(name: "name", last4: nil),
+                       isExpensed: Bool = false,
+                       timestamps: TransactionTimestamps = .create()) -> Self {
+        .init(
+            id: id,
+            description: description,
+            fullDescription: fullDescription,
+            category: category,
+            subcategory: subcategory,
+            centAmount: centAmount,
+            currency: currency,
+            currencyCentAmount: currencyCentAmount,
+            source: source,
+            isExpensed: isExpensed,
+            timestamps: timestamps
+        )
+    }
+}
+
+#endif

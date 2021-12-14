@@ -34,13 +34,14 @@
 		CB03FFC82755932600AF4262 /* NetworkingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFC6275592C900AF4262 /* NetworkingSession.swift */; };
 		CB03FFCD275593FE00AF4262 /* MockNetworkingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFCC275593FE00AF4262 /* MockNetworkingSession.swift */; };
 		CB03FFD127559A1700AF4262 /* TransactionServiceClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFD027559A1700AF4262 /* TransactionServiceClientTests.swift */; };
+		CB0B3A3727694C3300BC43EA /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0B3A3627694C3300BC43EA /* Date+extension.swift */; };
+		CB0B3A3827694C3300BC43EA /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0B3A3627694C3300BC43EA /* Date+extension.swift */; };
 		CB2394342765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394352765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394412768055500CD9ACB /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394402768055400CD9ACB /* typealiases.swift */; };
 		CB2394422768055500CD9ACB /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394402768055400CD9ACB /* typealiases.swift */; };
 		CB239444276808CA00CD9ACB /* TransactionDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB239443276808CA00CD9ACB /* TransactionDay.swift */; };
 		CB239445276808CA00CD9ACB /* TransactionDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB239443276808CA00CD9ACB /* TransactionDay.swift */; };
-		CB5C7B302755A73200552511 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B2E2755A71E00552511 /* Factory.swift */; };
 		CB5C7B362755CBC600552511 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B322755C9E300552511 /* Currency.swift */; };
 		CB5C7B372755CBC600552511 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B322755C9E300552511 /* Currency.swift */; };
 		CB5C7B382755CBD100552511 /* MoneyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B342755CA1900552511 /* MoneyFormatter.swift */; };
@@ -49,7 +50,6 @@
 		CB5D82092756F7B100C12E13 /* JSONEncoder+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FF9F275566E600AF4262 /* JSONEncoder+extension.swift */; };
 		CB5D820A2756F7B100C12E13 /* JSONDecoder+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FF9D275566BF00AF4262 /* JSONDecoder+extension.swift */; };
 		CB5D820B2756F7B100C12E13 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FF992755559F00AF4262 /* String+extension.swift */; };
-		CB5D820C2756F7B600C12E13 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B2E2755A71E00552511 /* Factory.swift */; };
 		CB5D820D2756F7B600C12E13 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03FFA82755782600AF4262 /* Secrets.swift */; };
 		CB5D820E2756F7B600C12E13 /* LaunchArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9F099F2756F2A200B9344B /* LaunchArgument.swift */; };
 		CB5D820F2756F7B600C12E13 /* MoneyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5C7B342755CA1900552511 /* MoneyFormatter.swift */; };
@@ -177,10 +177,10 @@
 		CB03FFC6275592C900AF4262 /* NetworkingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingSession.swift; sourceTree = "<group>"; };
 		CB03FFCC275593FE00AF4262 /* MockNetworkingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkingSession.swift; sourceTree = "<group>"; };
 		CB03FFD027559A1700AF4262 /* TransactionServiceClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceClientTests.swift; sourceTree = "<group>"; };
+		CB0B3A3627694C3300BC43EA /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		CB2394332765050400CD9ACB /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		CB2394402768055400CD9ACB /* typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typealiases.swift; sourceTree = "<group>"; };
 		CB239443276808CA00CD9ACB /* TransactionDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDay.swift; sourceTree = "<group>"; };
-		CB5C7B2E2755A71E00552511 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		CB5C7B322755C9E300552511 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		CB5C7B342755CA1900552511 /* MoneyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatter.swift; sourceTree = "<group>"; };
 		CB5C7B3A2755CE2400552511 /* BreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownView.swift; sourceTree = "<group>"; };
@@ -337,6 +337,7 @@
 		CB03FF982755559400AF4262 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CB0B3A3627694C3300BC43EA /* Date+extension.swift */,
 				CB03FF992755559F00AF4262 /* String+extension.swift */,
 				CB03FF9D275566BF00AF4262 /* JSONDecoder+extension.swift */,
 				CB03FF9F275566E600AF4262 /* JSONEncoder+extension.swift */,
@@ -352,7 +353,6 @@
 			children = (
 				CB6A40C92759AA1300624502 /* Settings.swift */,
 				CB03FFA82755782600AF4262 /* Secrets.swift */,
-				CB5C7B2E2755A71E00552511 /* Factory.swift */,
 				CB5C7B342755CA1900552511 /* MoneyFormatter.swift */,
 				CB9F099F2756F2A200B9344B /* LaunchArgument.swift */,
 				CBFA68552757EA45009FD554 /* Logging */,
@@ -796,7 +796,6 @@
 				CBFA6882275878DE009FD554 /* Month.swift in Sources */,
 				CB03FF722755480600AF4262 /* Transaction.swift in Sources */,
 				CB6A40C627599F4C00624502 /* BreakdownViewModel.swift in Sources */,
-				CB5C7B302755A73200552511 /* Factory.swift in Sources */,
 				CBFA689927596B4E009FD554 /* EnvelopeInteractor.swift in Sources */,
 				CBBB4B1027553C4D001F5F63 /* MentatApp.swift in Sources */,
 				CBFA68632757EB79009FD554 /* LoggerEventAttribute.swift in Sources */,
@@ -810,6 +809,7 @@
 				CB03FFBA27557D4F00AF4262 /* TransactionServiceClient.swift in Sources */,
 				CB03FFC427558ED700AF4262 /* URLRequestBuilder.swift in Sources */,
 				CBFA685A2757EAEB009FD554 /* LoggerEvent.swift in Sources */,
+				CB0B3A3727694C3300BC43EA /* Date+extension.swift in Sources */,
 				CBFA689527596A9C009FD554 /* EnvelopeRepository.swift in Sources */,
 				CBFA688D27596730009FD554 /* ExpenseSummaryView.swift in Sources */,
 				CB2394412768055500CD9ACB /* typealiases.swift in Sources */,
@@ -868,7 +868,6 @@
 				CB2394422768055500CD9ACB /* typealiases.swift in Sources */,
 				CB03FF7E2755494500AF4262 /* Category.swift in Sources */,
 				CBFA68642757EB79009FD554 /* LoggerEventAttribute.swift in Sources */,
-				CB5D820C2756F7B600C12E13 /* Factory.swift in Sources */,
 				CBFA689A27596B4E009FD554 /* EnvelopeInteractor.swift in Sources */,
 				CB5D822027572A1900C12E13 /* View+extension.swift in Sources */,
 				CB5D820E2756F7B600C12E13 /* LaunchArgument.swift in Sources */,
@@ -877,6 +876,7 @@
 				CBFA685B2757EAEB009FD554 /* LoggerEvent.swift in Sources */,
 				CBFA686D2757F6CB009FD554 /* ConsoleLogger.swift in Sources */,
 				CB5D82172756F7C100C12E13 /* NetworkingSession.swift in Sources */,
+				CB0B3A3827694C3300BC43EA /* Date+extension.swift in Sources */,
 				CB5D820A2756F7B100C12E13 /* JSONDecoder+extension.swift in Sources */,
 				CBFA6892275969F9009FD554 /* Envelope.swift in Sources */,
 				CBFA685E2757EAF6009FD554 /* LoggerCategory.swift in Sources */,
