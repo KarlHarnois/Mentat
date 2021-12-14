@@ -12,23 +12,35 @@ struct Transaction: Identifiable, Codable, Equatable {
     let source: TransactionSource
     var isExpensed: Bool
     let timestamps: TransactionTimestamps
+
+    var day: Day {
+        Calendar.current.component(.day, from: timestamps.postedAt)
+    }
 }
 
 extension Array where Element == Transaction {
     func sortedByDay() -> [Day: [Transaction]] {
         reduce([:]) { accumulation, transaction in
-            let day = Calendar.current.component(.day, from: transaction.timestamps.postedAt)
-            var list = accumulation[day] ?? []
+            let day = transaction.day
 
-            if let index = list.firstIndex(where: { $0.timestamps.postedAt > transaction.timestamps.postedAt }) {
-                list.insert(transaction, at: index)
-            } else {
-                list.append(transaction)
-            }
+            var list = accumulation[day] ?? []
+            list.insertByPostDate(transaction)
 
             var copy = accumulation
             copy[day] = list
             return copy
+        }
+    }
+
+    private mutating func insertByPostDate(_ transaction: Transaction) {
+        let index = firstIndex(where: {
+            $0.timestamps.postedAt > transaction.timestamps.postedAt
+        })
+
+        if let index = index {
+            insert(transaction, at: index)
+        } else {
+            append(transaction)
         }
     }
 }
