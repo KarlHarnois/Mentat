@@ -5,18 +5,35 @@ struct TransactionRow: View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
-                Text(transaction.description)
-
-                categories.map {
-                    Text($0)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-            }
-
+            leftStack
             Spacer()
             Text(formattedAmount)
+        }
+    }
+
+    private var leftStack: some View {
+        VStack(alignment: .leading) {
+            Text(transaction.description)
+            idLabel
+            categoryLabel
+        }
+    }
+
+    private var idLabel: some View {
+        let id = String(transaction.id.suffix(10))
+
+        return Text(id)
+            .foregroundColor(.secondary)
+            .font(.caption)
+    }
+
+    private var categoryLabel: some View {
+        Group {
+            categories.map {
+                Text($0)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
         }
     }
 
@@ -27,7 +44,7 @@ struct TransactionRow: View {
 
     private var categories: String? {
         guard let category = transaction.category else {
-            return ""
+            return nil
         }
         return [category.rawValue, transaction.subcategory?.rawValue]
             .compactMap { $0 }
