@@ -103,7 +103,7 @@ struct BreakdownView: View {
     }
 
     private func list(for transactions: [Transaction]) -> some View {
-        TransactionList(transactions: transactions, style: .fullDescription)
+        TransactionList(transactions: transactions)
     }
 
     private func formattedMoney(_ centAmount: Int?) -> some View {
