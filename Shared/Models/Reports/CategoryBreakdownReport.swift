@@ -1,4 +1,5 @@
 import OrderedCollections
+import Foundation
 
 struct CategoryBreakdownReport {
     let transactions: [Transaction]
@@ -17,37 +18,65 @@ struct CategoryBreakdownReport {
         self.transactions = transactions
 
         transactions.forEach { transaction in
-            total += transaction.centAmount
-
-            if transaction.centAmount > 0 && !transaction.isExpensed {
-                expenseTotal += transaction.centAmount
-            }
-
-            guard let category = transaction.category else {
-                if transaction.centAmount > 0 {
-                    uncategorizedExpenseTotal += transaction.centAmount
-                }
-                return
-            }
-
-            totalPerCategory[category] = (totalPerCategory[category] ?? 0) + transaction.centAmount
-
-            guard let subcategory = transaction.subcategory else {
-                uncategorizedTotalByCategory[category] = (uncategorizedTotalByCategory[category] ?? 0) + transaction.centAmount
-                return
-            }
-
-            var subs = subcategoriesByCategory[category] ?? .init()
-            subs.append(subcategory)
-            subcategoriesByCategory[category] = subs
-
-            if totalPerSubcategory[category] == nil {
-                totalPerSubcategory[category] = [:]
-            }
-
-            var copy = totalPerSubcategory[category]?[subcategory] ?? 0
-            copy += transaction.centAmount
-            totalPerSubcategory[category]?[subcategory] = copy
+            compute(transaction)
         }
+    }
+
+    private mutating func compute(_ transaction: Transaction) {
+        total += transaction.centAmount
+
+        if isExpense(transaction) {
+            addToExpenseAmount(transaction)
+        }
+
+        guard let category = transaction.category else {
+            if isExpense(transaction) {
+                addToUncategorizedExpense(transaction)
+            }
+            return
+        }
+        addToTotals(by: category, amount: transaction.centAmount)
+
+        guard let subcategory = transaction.subcategory else {
+            addToUncategorizedTotals(by: category, amount: transaction.centAmount)
+            return
+        }
+        add(subcategory, to: category)
+        addToTotals(by: subcategory, in: category, amount: transaction.centAmount)
+    }
+
+    private func isExpense(_ transaction: Transaction) -> Bool {
+        transaction.centAmount > 0 && !transaction.isExpensed
+    }
+
+    private mutating func addToExpenseAmount(_ transaction: Transaction) {
+        expenseTotal += transaction.centAmount
+    }
+
+    private mutating func addToUncategorizedExpense(_ transaction: Transaction) {
+        uncategorizedExpenseTotal += transaction.centAmount
+    }
+
+    private mutating func addToTotals(by category: Category, amount: Int) {
+        totalPerCategory[category] = (totalPerCategory[category] ?? 0) + amount
+    }
+
+    private mutating func addToUncategorizedTotals(by category: Category, amount: Int) {
+        uncategorizedTotalByCategory[category] = (uncategorizedTotalByCategory[category] ?? 0) + amount
+    }
+
+    private mutating func add(_ subcategory: Subcategory, to category: Category) {
+        var subs = subcategoriesByCategory[category] ?? .init()
+        subs.append(subcategory)
+        subcategoriesByCategory[category] = subs
+    }
+
+    private mutating func addToTotals(by subcategory: Subcategory, in category: Category, amount: Int) {
+        if totalPerSubcategory[category] == nil {
+            totalPerSubcategory[category] = [:]
+        }
+        var copy = totalPerSubcategory[category]?[subcategory] ?? 0
+        copy += amount
+        totalPerSubcategory[category]?[subcategory] = copy
     }
 }

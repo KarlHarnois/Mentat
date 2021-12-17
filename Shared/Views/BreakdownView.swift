@@ -41,8 +41,14 @@ struct BreakdownView: View {
 
     private func sections(for breakdown: CategoryBreakdownReport) -> some View {
         Group {
-            Section(header: Text("Triage")) {
+            Section {
                 uncategorizedExpenses(breakdown: breakdown)
+
+                row(
+                    title: "All Transactions",
+                    centAmount: breakdown.expenseTotal,
+                    transactions: breakdown.transactions
+                )
             }
 
             ForEach(breakdown.categories) { category in
@@ -97,13 +103,7 @@ struct BreakdownView: View {
     }
 
     private func list(for transactions: [Transaction]) -> some View {
-        List(transactions) { transaction in
-            HStack {
-                Text(transaction.description)
-                Spacer()
-                formattedMoney(transaction.centAmount)
-            }
-        }
+        TransactionList(transactions: transactions)
     }
 
     private func formattedMoney(_ centAmount: Int?) -> some View {

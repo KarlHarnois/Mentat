@@ -5,16 +5,16 @@ final class CategoryBreakdownReportTests: XCTestCase {
     var subject: CategoryBreakdownReport!
 
     let transactions: [Transaction] = [
-        try! .create(["category": "Food", "subcategory": "Grocery", "centAmount": 5050]),
-        try! .create(["category": "Food", "subcategory": "Grocery", "centAmount": 100]),
-        try! .create(["category": "Food", "subcategory": "Restaurant", "isExpensed": true, "centAmount": 8000]),
-        try! .create(["category": "Food", "centAmount": 100]),
-        try! .create(["category": "Food", "centAmount": 500]),
-        try! .create(["category": "Housing", "subcategory": "furniture", "centAmount": 400]),
-        try! .create(["category": "Housing", "centAmount": 560]),
-        try! .create(["centAmount": -12000]),
-        try! .create(["centAmount": 1000]),
-        try! .create(["centAmount": 50])
+        .create(id: "1", category: .food, subcategory: .grocery, centAmount: 5050),
+        .create(id: "2", category: .food, subcategory: .grocery, centAmount: 100),
+        .create(id: "3", category: .food, subcategory: .restaurant, centAmount: 8000, isExpensed: true),
+        .create(id: "4", category: .food, centAmount: 100),
+        .create(id: "5", category: .food, centAmount: 500),
+        .create(id: "6", category: .housing, subcategory: .furniture, centAmount: 400),
+        .create(id: "7", category: .housing, centAmount: 560),
+        .create(id: "8", centAmount: -12000),
+        .create(id: "9", centAmount: 1000),
+        .create(id: "10", centAmount: 50)
     ]
 
     override func setUp() {

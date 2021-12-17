@@ -17,11 +17,11 @@ final class TransationTests: XCTestCase {
             source: .init(name: "Visa", last4: "4242"),
             isExpensed: false,
             timestamps: .init(
-                createdAt: nil,
-                updatedAt: nil,
+                createdAt: .init(),
+                updatedAt: .init(),
                 postedAt: .init(),
                 deletedAt: nil,
-                authorizedAt: nil
+                authorizedAt: .init()
             )
         )
     }
@@ -86,6 +86,26 @@ final class TransationTests: XCTestCase {
         let encodedTransaction = try encode(transaction)
         let encodedTimestamps = encodedTransaction?["timestamps"] as? [String: Any]
         XCTAssertEqual(encodedTimestamps?["postedAt"] as? Int, 1620172800000)
+    }
+
+    func testSortedByDay() {
+        let transactions: [Transaction] = [
+            .create(id: "1", timestamps: .create(
+                authorizedAt: .init(day: 4, month: .december, year: 2021).flatMap { $0.adding(minutes: 2) }!
+            )),
+            .create(id: "2", timestamps: .create(
+                authorizedAt: .init(day: 4, month: .december, year: 2021).flatMap { $0.adding(minutes: 5) }!
+            )),
+            .create(id: "3", timestamps: .create(
+                authorizedAt: .init(day: 7, month: .december, year: 2021)!
+            )),
+            .create(id: "4", timestamps: .create(
+                authorizedAt: .init(day: 4, month: .december, year: 2021)!
+            ))
+        ]
+
+        let idsPerDay = transactions.sortedByDay().mapValues { $0.map(\.id) }
+        XCTAssertEqual(idsPerDay, [4: ["4", "1", "2"], 7: ["3"]])
     }
 
     private func decodeTransaction() throws -> Transaction {
