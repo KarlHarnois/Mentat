@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct BreakdownView: View {
-    @StateObject var viewModel: BreakdownViewModel
+struct BudgetSummaryScreen: View {
+    @StateObject var viewModel: BudgetSummaryViewModel
     @EnvironmentObject var settings: Settings
 
     var body: some View {
@@ -39,7 +39,7 @@ struct BreakdownView: View {
         }
     }
 
-    private func sections(for breakdown: CategoryBreakdownReport) -> some View {
+    private func sections(for breakdown: TransactionSummary) -> some View {
         Group {
             Section {
                 uncategorizedExpenses(breakdown: breakdown)
@@ -57,7 +57,7 @@ struct BreakdownView: View {
         }
     }
 
-    private func section(for category: Category, breakdown: CategoryBreakdownReport) -> some View {
+    private func section(for category: Category, breakdown: TransactionSummary) -> some View {
         Section(header: HStack {
             Text(category.rawValue.capitalized)
             Spacer()
@@ -82,7 +82,7 @@ struct BreakdownView: View {
         }
     }
 
-    private func uncategorizedExpenses(breakdown: CategoryBreakdownReport) -> some View {
+    private func uncategorizedExpenses(breakdown: TransactionSummary) -> some View {
         Group {
             if breakdown.uncategorizedExpenseTotal > 0 {
                 let transactions = breakdown.transactions.filter { $0.category == nil }

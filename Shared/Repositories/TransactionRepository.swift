@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor final class TransactionRepository: ObservableObject {
-    @Published private(set) var categoryBreakdownByMonthYear: [MonthYear: CategoryBreakdownReport] = [:]
+    @Published private(set) var categoryBreakdownByMonthYear: [MonthYear: TransactionSummary] = [:]
     @Published private(set) var transactionsByMonthYear: [MonthYear: [Transaction]] = [:]
 
     private let client: TransactionServiceClient

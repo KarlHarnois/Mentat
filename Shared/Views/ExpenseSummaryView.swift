@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExpenseSummaryView: View {
-    let breakdown: CategoryBreakdownReport?
+    let breakdown: TransactionSummary?
 
     var body: some View {
         VStack(alignment: .leading) {

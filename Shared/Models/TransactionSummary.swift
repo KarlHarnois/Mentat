@@ -1,7 +1,7 @@
 import OrderedCollections
 import Foundation
 
-struct CategoryBreakdownReport {
+struct TransactionSummary {
     let transactions: [Transaction]
     let categories = Category.allCases
 

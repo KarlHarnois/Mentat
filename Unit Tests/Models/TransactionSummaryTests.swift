@@ -1,8 +1,8 @@
 import XCTest
 @testable import Mentat
 
-final class CategoryBreakdownReportTests: XCTestCase {
-    var subject: CategoryBreakdownReport!
+final class TransactionSummaryTests: XCTestCase {
+    var subject: TransactionSummary!
 
     let transactions: [Transaction] = [
         .create(id: "1", category: .food, subcategory: .grocery, centAmount: 5050),

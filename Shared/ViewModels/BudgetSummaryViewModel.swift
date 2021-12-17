@@ -1,6 +1,6 @@
 import Combine
 
-@MainActor final class BreakdownViewModel: ObservableObject {
+@MainActor final class BudgetSummaryViewModel: ObservableObject {
     @Published var state: State
 
     private let props: Props
@@ -19,7 +19,7 @@ import Combine
     struct State {
         var monthYear: MonthYear
         var error: IdentifiableError?
-        var breakdown: CategoryBreakdownReport?
+        var breakdown: TransactionSummary?
         var envelopes: [Category: Envelope] = [:]
         var isPresentingMonthYearPicker = false
         var isPresentingSettings = false
