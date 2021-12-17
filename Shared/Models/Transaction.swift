@@ -6,9 +6,9 @@ struct Transaction: Identifiable, Codable, Equatable {
     let fullDescription: String
     @CapitalizedStringCodable var category: Category?
     @CapitalizedStringCodable var subcategory: Subcategory?
-    let centAmount: Int
+    let centAmount: CentAmount
     let currency: Currency
-    let currencyCentAmount: Int
+    let currencyCentAmount: CentAmount
     let source: TransactionSource
     var isExpensed: Bool
     let timestamps: TransactionTimestamps

@@ -10,9 +10,9 @@ struct TransactionSummary {
     private(set) var uncategorizedExpenseTotal = 0
 
     private(set) var subcategoriesByCategory: [Category: OrderedSet<Subcategory>] = [:]
-    private(set) var totalPerCategory: [Category: Int] = [:]
-    private(set) var uncategorizedTotalByCategory: [Category: Int] = [:]
-    private(set) var totalPerSubcategory: [Category: [Subcategory: Int]] = [:]
+    private(set) var totalPerCategory: [Category: CentAmount] = [:]
+    private(set) var uncategorizedTotalByCategory: [Category: CentAmount] = [:]
+    private(set) var totalPerSubcategory: [Category: [Subcategory: CentAmount]] = [:]
 
     init(transactions: [Transaction]) {
         self.transactions = transactions
