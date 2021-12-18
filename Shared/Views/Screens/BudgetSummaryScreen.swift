@@ -41,10 +41,10 @@ struct BudgetSummaryScreen: View {
     }
 
     private func categoryGrid(for summary: TransactionSummary) -> some View {
-        LazyVGrid(columns: [
-            GridItem(),
-            GridItem()
-        ]) {
+        let spacing: CGFloat = 15
+        let items = [GridItem(spacing: spacing), GridItem(spacing: spacing)]
+
+        return LazyVGrid(columns: items, spacing: spacing) {
             ForEach(summary.categorySections) { section in
                 CategorySummaryProgressView(summary: section)
             }
