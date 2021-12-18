@@ -41,40 +41,10 @@ struct BudgetSummaryScreen: View {
 
     private func sections(for summary: TransactionSummary) -> some View {
         Group {
-            Section {
-                uncategorizedExpenses(summary: summary)
-
-                row(
-                    title: "All Transactions",
-                    centAmount: summary.expenseTotal,
-                    transactions: summary.transactions
-                )
+            ForEach(summary.categorySections) { section in
+                CategorySummaryView(summary: section)
             }
         }
-    }
-
-    private func uncategorizedExpenses(summary: TransactionSummary) -> some View {
-        Group {
-            if summary.uncategorizedExpenseTotal > 0 {
-                let transactions = summary.transactions.filter { $0.category == nil }
-                let amount = summary.uncategorizedExpenseTotal
-                row(title: "Uncategorized", centAmount: amount, transactions: transactions)
-            }
-        }
-    }
-
-    private func row(title: String, centAmount: Int, transactions: [Transaction]) -> some View {
-        NavigationLink(destination: list(for: transactions)) {
-            HStack {
-                Text(title)
-                Spacer()
-                formattedMoney(centAmount)
-            }
-        }
-    }
-
-    private func list(for transactions: [Transaction]) -> some View {
-        TransactionList(transactions: transactions)
     }
 
     private func formattedMoney(_ centAmount: Int?) -> some View {
