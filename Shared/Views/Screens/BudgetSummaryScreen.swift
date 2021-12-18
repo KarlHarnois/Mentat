@@ -50,34 +50,6 @@ struct BudgetSummaryScreen: View {
                     transactions: summary.transactions
                 )
             }
-
-            ForEach(Category.allCases) { category in
-                section(for: category, summary: summary)
-            }
-        }
-    }
-
-    private func section(for category: Category, summary: TransactionSummary) -> some View {
-        Section(header: HStack {
-            Text(category.rawValue.capitalized)
-            Spacer()
-            formattedMoney(summary.totalPerCategory[category])
-        }) {
-            ForEach(summary.subcategoriesByCategory[category] ?? []) { subcategory in
-                let transactions = summary.transactions.filter {
-                    $0.subcategory == subcategory && $0.category == category
-                }
-                let title = subcategory.rawValue.capitalized
-                let amount = summary.totalPerSubcategory[category]?[subcategory] ?? 0
-                row(title: title, centAmount: amount, transactions: transactions)
-            }
-
-            if let uncategorizedTotal = summary.uncategorizedTotalByCategory[category] {
-                let transactions = summary.transactions.filter {
-                    $0.subcategory == nil && $0.category == category
-                }
-                row(title: "Other", centAmount: uncategorizedTotal, transactions: transactions)
-            }
         }
     }
 

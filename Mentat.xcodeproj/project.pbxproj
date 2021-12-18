@@ -121,7 +121,6 @@
 		CBFA686D2757F6CB009FD554 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA686B2757F6CB009FD554 /* ConsoleLogger.swift */; };
 		CBFA68702757F91B009FD554 /* TransactionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA686F2757F91B009FD554 /* TransactionSummary.swift */; };
 		CBFA68712757F91B009FD554 /* TransactionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA686F2757F91B009FD554 /* TransactionSummary.swift */; };
-		CBFA687B27581145009FD554 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = CBFA687A27581145009FD554 /* OrderedCollections */; };
 		CBFA6881275878DD009FD554 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA687F27587841009FD554 /* Month.swift */; };
 		CBFA6882275878DE009FD554 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA687F27587841009FD554 /* Month.swift */; };
 		CBFA688527587C77009FD554 /* MonthYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688327587C71009FD554 /* MonthYear.swift */; };
@@ -257,7 +256,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBFA687B27581145009FD554 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +602,6 @@
 			);
 			name = "Mentat (iOS)";
 			packageProductDependencies = (
-				CBFA687A27581145009FD554 /* OrderedCollections */,
 			);
 			productName = "Mentat (iOS)";
 			productReference = CBBB4AEF27553C4D001F5F63 /* Mentat.app */;
@@ -703,7 +700,6 @@
 			);
 			mainGroup = CBBB4AE227553C47001F5F63;
 			packageReferences = (
-				CBFA687927581145009FD554 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = CBBB4AF027553C4D001F5F63 /* Products */;
 			projectDirPath = "";
@@ -1385,25 +1381,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CBFA687927581145009FD554 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CBFA687A27581145009FD554 /* OrderedCollections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CBFA687927581145009FD554 /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CBBB4AE327553C47001F5F63 /* Project object */;
 }
