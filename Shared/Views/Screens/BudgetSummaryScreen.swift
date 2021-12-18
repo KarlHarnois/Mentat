@@ -13,8 +13,8 @@ struct BudgetSummaryScreen: View {
 
                 expenseSummarySection
 
-                if let breakdown = viewModel.state.breakdown {
-                    sections(for: breakdown)
+                if let summary = viewModel.state.summary {
+                    sections(for: summary)
                 }
             }
             .listStyle(.insetGrouped)
@@ -34,25 +34,25 @@ struct BudgetSummaryScreen: View {
 
     private var expenseSummarySection: some View {
         Section {
-            ExpenseSummaryView(breakdown: viewModel.state.breakdown)
+            ExpenseSummaryView(breakdown: viewModel.state.summary)
                 .listRowBackground(Color.clear)
         }
     }
 
-    private func sections(for breakdown: TransactionSummary) -> some View {
+    private func sections(for summary: TransactionSummary) -> some View {
         Group {
             Section {
-                uncategorizedExpenses(breakdown: breakdown)
+                uncategorizedExpenses(breakdown: summary)
 
                 row(
                     title: "All Transactions",
-                    centAmount: breakdown.expenseTotal,
-                    transactions: breakdown.transactions
+                    centAmount: summary.expenseTotal,
+                    transactions: summary.transactions
                 )
             }
 
-            ForEach(breakdown.categories) { category in
-                section(for: category, breakdown: breakdown)
+            ForEach(Category.allCases) { category in
+                section(for: category, breakdown: summary)
             }
         }
     }

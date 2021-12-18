@@ -19,7 +19,7 @@ import Combine
     struct State {
         var monthYear: MonthYear
         var error: IdentifiableError?
-        var breakdown: TransactionSummary?
+        var summary: TransactionSummary?
         var envelopes: [Category: Envelope] = [:]
         var isPresentingMonthYearPicker = false
         var isPresentingSettings = false
@@ -50,11 +50,11 @@ import Combine
         props
             .transactionRepo
             .$categoryBreakdownByMonthYear
-            .combineLatest(props.settings.$monthYear) { breakdowns, monthYear in
-                breakdowns[monthYear]
+            .combineLatest(props.settings.$monthYear) { summary, monthYear in
+                summary[monthYear]
             }
-            .sink { [weak self] breakdown in
-                self?.state.breakdown = breakdown
+            .sink { [weak self] summary in
+                self?.state.summary = summary
             }
             .store(in: &cancellables)
     }

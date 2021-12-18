@@ -10,8 +10,12 @@ struct Transaction: Identifiable, Codable, Equatable {
     let currency: Currency
     let currencyCentAmount: CentAmount
     let source: TransactionSource
-    var isExpensed: Bool
+    let isExpensed: Bool
     let timestamps: TransactionTimestamps
+
+    var isPersonalExpense: Bool {
+        centAmount > 0 && !isExpensed
+    }
 }
 
 extension Array where Element == Transaction {

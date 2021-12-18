@@ -1,5 +1,5 @@
 struct SubcategoryTransactionSummary {
     let subcategory: Subcategory
-    let total: CentAmount
-    let transactions: [Transaction]
+    var total: CentAmount = 0
+    var transactions: [Transaction] = []
 }
