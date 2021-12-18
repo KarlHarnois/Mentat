@@ -49,7 +49,7 @@ import Combine
 
         props
             .transactionRepo
-            .$categoryBreakdownByMonthYear
+            .$summaryByMonthYear
             .combineLatest(props.settings.$monthYear) { summary, monthYear in
                 summary[monthYear]
             }

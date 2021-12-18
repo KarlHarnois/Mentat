@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor final class TransactionRepository: ObservableObject {
-    @Published private(set) var categoryBreakdownByMonthYear: [MonthYear: TransactionSummary] = [:]
+    @Published private(set) var summaryByMonthYear: [MonthYear: TransactionSummary] = [:]
     @Published private(set) var transactionsByMonthYear: [MonthYear: [Transaction]] = [:]
 
     private let client: TransactionServiceClient
@@ -15,6 +15,6 @@ import Foundation
         let response = try await downloader.fetchTransaction(month: monthYear.month, year: monthYear.year)
 
         transactionsByMonthYear[monthYear] = response.transactions
-        categoryBreakdownByMonthYear[monthYear] = response.breakdown
+        summaryByMonthYear[monthYear] = response.summary
     }
 }

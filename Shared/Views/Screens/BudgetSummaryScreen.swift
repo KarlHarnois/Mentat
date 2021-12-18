@@ -34,7 +34,7 @@ struct BudgetSummaryScreen: View {
 
     private var expenseSummarySection: some View {
         Section {
-            ExpenseSummaryView(breakdown: viewModel.state.summary)
+            ExpenseSummaryView(summary: viewModel.state.summary)
                 .listRowBackground(Color.clear)
         }
     }
@@ -42,7 +42,7 @@ struct BudgetSummaryScreen: View {
     private func sections(for summary: TransactionSummary) -> some View {
         Group {
             Section {
-                uncategorizedExpenses(breakdown: summary)
+                uncategorizedExpenses(summary: summary)
 
                 row(
                     title: "All Transactions",
@@ -52,41 +52,40 @@ struct BudgetSummaryScreen: View {
             }
 
             ForEach(Category.allCases) { category in
-                section(for: category, breakdown: summary)
+                section(for: category, summary: summary)
             }
         }
     }
 
-    private func section(for category: Category, breakdown: TransactionSummary) -> some View {
+    private func section(for category: Category, summary: TransactionSummary) -> some View {
         Section(header: HStack {
             Text(category.rawValue.capitalized)
             Spacer()
-            formattedMoney(breakdown.totalPerCategory[category])
+            formattedMoney(summary.totalPerCategory[category])
         }) {
-            ForEach(breakdown.subcategoriesByCategory[category] ?? []) { subcategory in
-                let transactions = breakdown.transactions.filter {
+            ForEach(summary.subcategoriesByCategory[category] ?? []) { subcategory in
+                let transactions = summary.transactions.filter {
                     $0.subcategory == subcategory && $0.category == category
                 }
                 let title = subcategory.rawValue.capitalized
-                let amount = breakdown.totalPerSubcategory[category]?[subcategory] ?? 0
+                let amount = summary.totalPerSubcategory[category]?[subcategory] ?? 0
                 row(title: title, centAmount: amount, transactions: transactions)
             }
 
-            if let uncategorizedTotal = breakdown.uncategorizedTotalByCategory[category] {
-                let transactions = breakdown.transactions.filter {
+            if let uncategorizedTotal = summary.uncategorizedTotalByCategory[category] {
+                let transactions = summary.transactions.filter {
                     $0.subcategory == nil && $0.category == category
                 }
-
                 row(title: "Other", centAmount: uncategorizedTotal, transactions: transactions)
             }
         }
     }
 
-    private func uncategorizedExpenses(breakdown: TransactionSummary) -> some View {
+    private func uncategorizedExpenses(summary: TransactionSummary) -> some View {
         Group {
-            if breakdown.uncategorizedExpenseTotal > 0 {
-                let transactions = breakdown.transactions.filter { $0.category == nil }
-                let amount = breakdown.uncategorizedExpenseTotal
+            if summary.uncategorizedExpenseTotal > 0 {
+                let transactions = summary.transactions.filter { $0.category == nil }
+                let amount = summary.uncategorizedExpenseTotal
                 row(title: "Uncategorized", centAmount: amount, transactions: transactions)
             }
         }

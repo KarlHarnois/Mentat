@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExpenseSummaryView: View {
-    let breakdown: TransactionSummary?
+    let summary: TransactionSummary?
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,7 +16,7 @@ struct ExpenseSummaryView: View {
     }
 
     private var formattedTotal: String {
-        guard let total = breakdown?.expenseTotal else { return "—" }
+        guard let total = summary?.expenseTotal else { return "—" }
         let formatter = MoneyFormatter(currency: .cad)
         return formatter.string(centAmount: total)
     }
