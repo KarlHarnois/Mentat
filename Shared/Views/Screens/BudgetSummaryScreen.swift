@@ -14,7 +14,7 @@ struct BudgetSummaryScreen: View {
                 expenseSummarySection
 
                 if let summary = viewModel.state.summary {
-                    sections(for: summary)
+                    categoryView(for: summary)
                 }
             }
             .listStyle(.insetGrouped)
@@ -39,10 +39,15 @@ struct BudgetSummaryScreen: View {
         }
     }
 
-    private func sections(for summary: TransactionSummary) -> some View {
+    private func categoryView(for summary: TransactionSummary) -> some View {
         Group {
             ForEach(summary.categorySections) { section in
-                CategorySummaryView(summary: section)
+                NavigationLink {
+                    // Link to category summary view
+                } label: {
+                    CategorySummaryProgressView(summary: section)
+                        .padding(.vertical)
+                }
             }
         }
     }
