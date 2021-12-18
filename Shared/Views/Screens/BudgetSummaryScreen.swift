@@ -14,7 +14,8 @@ struct BudgetSummaryScreen: View {
                 expenseSummarySection
 
                 if let summary = viewModel.state.summary {
-                    categoryView(for: summary)
+                    categoryGrid(for: summary)
+                        .listRowBackground(Color.clear)
                 }
             }
             .listStyle(.insetGrouped)
@@ -39,17 +40,16 @@ struct BudgetSummaryScreen: View {
         }
     }
 
-    private func categoryView(for summary: TransactionSummary) -> some View {
-        Group {
+    private func categoryGrid(for summary: TransactionSummary) -> some View {
+        LazyVGrid(columns: [
+            GridItem(),
+            GridItem()
+        ]) {
             ForEach(summary.categorySections) { section in
-                NavigationLink {
-                    // Link to category summary view
-                } label: {
-                    CategorySummaryProgressView(summary: section)
-                        .padding(.vertical)
-                }
+                CategorySummaryProgressView(summary: section)
             }
         }
+        .listRowInsets(.init())
     }
 
     private func formattedMoney(_ centAmount: Int?) -> some View {
