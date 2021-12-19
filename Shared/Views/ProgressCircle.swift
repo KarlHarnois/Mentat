@@ -19,8 +19,8 @@ struct ProgressCircle<Content: View>: View {
         ZStack {
             Circle()
                 .strokeBorder(lineWidth: Constants.lineWidth)
-                .opacity(0.3)
-                .foregroundColor(tint)
+                .opacity(0.1)
+                .foregroundColor(.primary)
 
             Arc(endAngle: .degrees(progress))
                 .strokeBorder(style: StrokeStyle(
@@ -28,7 +28,7 @@ struct ProgressCircle<Content: View>: View {
                     lineCap: .round,
                     lineJoin: .round
                 ))
-                .foregroundColor(tint)
+                .foregroundColor(strokeColor)
 
             content
         }
@@ -39,7 +39,7 @@ struct ProgressCircle<Content: View>: View {
         (Double(value) / Double(total)) * 360
     }
 
-    private var tint: Color {
+    private var strokeColor: Color {
         value > total ? .red : .green
     }
 }
