@@ -72,8 +72,10 @@ struct TransactionSummaryBuilder {
     }
 
     private func categorySummaries(from sections: Sections, and subsections: Subsections) -> [CategoryTransactionSummary] {
-        sections.map { category, section in
-            var copy = section
+        Category.allCases.map { category in
+            guard var copy = sections[category] else {
+                return CategoryTransactionSummary(category: category)
+            }
             copy.subcategories = subsections[category]?.map { _, value in value } ?? []
             return copy
         }

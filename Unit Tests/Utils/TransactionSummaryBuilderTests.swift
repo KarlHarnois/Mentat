@@ -37,17 +37,32 @@ final class TransactionSummaryBuilderTests: XCTestCase {
     }
 
     func testTotalPerCategory() {
-        XCTAssertEqual(categoryDictionary(\.total), [.food: 13750, .housing: 960])
+        XCTAssertEqual(categoryDictionary(\.total), [
+            .entertainment: 0,
+            .food: 13750,
+            .health: 0,
+            .housing: 960,
+            .transport: 0
+        ])
     }
 
     func testUncategorizedTotalByCategory() {
-        XCTAssertEqual(categoryDictionary(\.uncategorizedTotal), [.food: 600, .housing: 560])
+        XCTAssertEqual(categoryDictionary(\.uncategorizedTotal), [
+            .entertainment: 0,
+            .food: 600,
+            .health: 0,
+            .housing: 560,
+            .transport: 0
+        ])
     }
 
     func testCategoryTransactions() {
         XCTAssertEqual(categoryDictionary(\.transactions).mapValues { $0.map(\.id) }, [
+            .entertainment: [],
             .food: ["1", "2", "3", "4", "5"],
-            .housing: ["6", "7"]
+            .health: [],
+            .housing: ["6", "7"],
+            .transport: []
         ])
     }
 
