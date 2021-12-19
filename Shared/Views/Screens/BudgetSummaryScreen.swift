@@ -21,6 +21,7 @@ struct BudgetSummaryScreen: View {
             .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
             .navigationBarItems(leading: monthYearButton,trailing: settingsButton)
+            .navigationTitle("")
             .onSwipeRight(perform: settings.goToPreviousMonth)
             .onSwipeLeft(perform: settings.goToNextMonth)
             .onLoad {
