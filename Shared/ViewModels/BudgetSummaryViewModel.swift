@@ -1,6 +1,6 @@
 import Combine
 
-@MainActor final class BreakdownViewModel: ObservableObject {
+@MainActor final class BudgetSummaryViewModel: ObservableObject {
     @Published var state: State
 
     private let props: Props
@@ -19,7 +19,7 @@ import Combine
     struct State {
         var monthYear: MonthYear
         var error: IdentifiableError?
-        var breakdown: CategoryBreakdownReport?
+        var summary: TransactionSummary?
         var envelopes: [Category: Envelope] = [:]
         var isPresentingMonthYearPicker = false
         var isPresentingSettings = false
@@ -49,12 +49,12 @@ import Combine
 
         props
             .transactionRepo
-            .$categoryBreakdownByMonthYear
-            .combineLatest(props.settings.$monthYear) { breakdowns, monthYear in
-                breakdowns[monthYear]
+            .$summaryByMonthYear
+            .combineLatest(props.settings.$monthYear) { summary, monthYear in
+                summary[monthYear]
             }
-            .sink { [weak self] breakdown in
-                self?.state.breakdown = breakdown
+            .sink { [weak self] summary in
+                self?.state.summary = summary
             }
             .store(in: &cancellables)
     }

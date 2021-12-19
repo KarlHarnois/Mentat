@@ -2,28 +2,12 @@ import XCTest
 @testable import Mentat
 
 final class TransationTests: XCTestCase {
-    var transaction: Transaction!
+    func testIsPersonalExpense() {
+        let expense = Transaction.create(centAmount: 5000, isExpensed: false)
+        let expensedExpense = Transaction.create(centAmount: 100, isExpensed: true)
+        let deposit = Transaction.create(centAmount: -5000)
 
-    override func setUp() {
-        transaction = .init(
-            id: "1234",
-            description: "some grocery",
-            fullDescription: "SOME GROCERY",
-            category: .food,
-            subcategory: .grocery,
-            centAmount: 5000,
-            currency: .usd,
-            currencyCentAmount: 3916,
-            source: .init(name: "Visa", last4: "4242"),
-            isExpensed: false,
-            timestamps: .init(
-                createdAt: .init(),
-                updatedAt: .init(),
-                postedAt: .init(),
-                deletedAt: nil,
-                authorizedAt: .init()
-            )
-        )
+        XCTAssertEqual([expense, expensedExpense, deposit].map(\.isPersonalExpense), [true, false, false])
     }
 
     func testDecodingId() throws {
@@ -74,10 +58,12 @@ final class TransationTests: XCTestCase {
     }
 
     func testEncodingCategory() {
+        let transaction = Transaction.create(category: .food)
         XCTAssertEqual(try encode(transaction)?["category"] as? String, "Food")
     }
 
     func testEncodingSubcategory() {
+        let transaction = Transaction.create(subcategory: .grocery)
         XCTAssertEqual(try encode(transaction)?["subcategory"] as? String, "Grocery")
     }
 

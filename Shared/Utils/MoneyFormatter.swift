@@ -2,6 +2,11 @@ import Foundation
 
 struct MoneyFormatter {
     var currency: Currency?
+    var decimalStyle: DecimalStyle = .long
+
+    enum DecimalStyle {
+        case short, long
+    }
 
     func string(centAmount: Int) -> String {
         var output = decimal(centAmount)
@@ -32,13 +37,23 @@ struct MoneyFormatter {
     }
 
     private func decimal(_ centAmount: Int) -> String {
-        let decimal = NSDecimalNumber(value: centAmount).dividing(by: 100)
-        let str = String(format: "%.2f", decimal.doubleValue)
+        let str: String
+
+        if decimalStyle == .short, !hasDecimals(centAmount) {
+            str = String(centAmount / 100)
+        } else {
+            let decimal = NSDecimalNumber(value: centAmount).dividing(by: 100)
+            str = String(format: "%.2f", decimal.doubleValue)
+        }
 
         if centAmount >= 0 {
             return str
         } else {
             return String(str.dropFirst())
         }
+    }
+
+    private func hasDecimals(_ centAmount: Int) -> Bool {
+        (centAmount % 100) != 0
     }
 }

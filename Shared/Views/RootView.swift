@@ -23,13 +23,13 @@ struct RootView: View {
     }()
 
     var body: some View {
-        let viewModel = BreakdownViewModel(props: .init(
+        let viewModel = BudgetSummaryViewModel(props: .init(
             transactionRepo: transactionRepo,
             envelopeRepo: envelopeRepo,
             settings: settings
         ))
 
-        BreakdownView(viewModel: viewModel)
+        BudgetSummaryScreen(viewModel: viewModel)
             .environmentObject(transactionRepo)
             .environmentObject(envelopeRepo)
             .environmentObject(settings)

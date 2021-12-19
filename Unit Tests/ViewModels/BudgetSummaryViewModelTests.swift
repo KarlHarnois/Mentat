@@ -2,8 +2,8 @@ import XCTest
 import Combine
 @testable import Mentat
 
-@MainActor final class BreakdownViewModelTests: XCTestCase {
-    var subject: BreakdownViewModel!
+@MainActor final class BudgetSummaryViewModelTests: XCTestCase {
+    var subject: BudgetSummaryViewModel!
     var storage: MockStorage!
     var session: MockNetworkingSession!
     var settings: Settings!
@@ -42,7 +42,7 @@ import Combine
         }
     }
 
-    private func assertStateMatches(matcher: @escaping (BreakdownViewModel.State) -> Bool) {
+    private func assertStateMatches(matcher: @escaping (BudgetSummaryViewModel.State) -> Bool) {
         let expectation = XCTestExpectation()
 
         subject

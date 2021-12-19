@@ -12,4 +12,22 @@ struct MonthYear: Hashable, Codable {
             return month.shortName + " " + String(year)
         }
     }
+
+    var previousMonth: MonthYear {
+        if month == .january {
+            return MonthYear(month: .december, year: year - 1)
+        } else {
+            let previousMonth = Month.allCases[month.rawValue - 2]
+            return MonthYear(month: previousMonth, year: year)
+        }
+    }
+
+    var nextMonth: MonthYear {
+        if month == .december {
+            return MonthYear(month: .january, year: year + 1)
+        } else {
+            let nextMonth = Month.allCases[month.rawValue]
+            return MonthYear(month: nextMonth, year: year)
+        }
+    }
 }
