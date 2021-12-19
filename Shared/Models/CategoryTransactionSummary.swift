@@ -1,4 +1,4 @@
-struct CategoryTransactionSummary: Identifiable {
+struct CategoryTransactionSummary: Identifiable, Equatable {
     let category: Category
     var total: CentAmount = 0
     var uncategorizedTotal: CentAmount = 0

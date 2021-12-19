@@ -26,6 +26,9 @@ struct BudgetSummaryScreen: View {
             .onLoad {
                 viewModel.send(.refresh)
             }
+            .push($viewModel.state.presentedSummary) { summary in
+                CategorySummaryScreen(summary: summary)
+            }
         }
     }
 
@@ -48,7 +51,9 @@ struct BudgetSummaryScreen: View {
 
         return LazyVGrid(columns: items, spacing: spacing) {
             ForEach(summary.categorySections) { section in
-                CategorySummaryProgressView(summary: section)
+                CategorySummaryProgressView(summary: section).onTapGesture {
+                    viewModel.send(.present(section))
+                }
             }
             CategorySummaryProgressView(
                 uncategorizedTransactions: summary.uncategorizedTransactions,

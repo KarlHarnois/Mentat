@@ -14,6 +14,7 @@ import Combine
 
     enum Action {
         case refresh
+        case present(CategoryTransactionSummary)
     }
 
     struct State {
@@ -23,6 +24,7 @@ import Combine
         var envelopes: [Category: Envelope] = [:]
         var isPresentingMonthYearPicker = false
         var isPresentingSettings = false
+        var presentedSummary: CategoryTransactionSummary?
     }
 
     init(props: Props) {
@@ -64,6 +66,9 @@ import Combine
         case .refresh:
             refreshTransactions()
             refreshEnvelopes()
+
+        case .present(let summary):
+            state.presentedSummary = summary
         }
     }
 

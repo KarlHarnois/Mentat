@@ -42,6 +42,15 @@ import Combine
         }
     }
 
+    func testPresentCategorySummary() {
+        let summary = CategoryTransactionSummary(category: .transport)
+        subject.send(.present(summary))
+
+        assertStateMatches { state in
+            state.presentedSummary == summary
+        }
+    }
+
     private func assertStateMatches(matcher: @escaping (BudgetSummaryViewModel.State) -> Bool) {
         let expectation = XCTestExpectation()
 

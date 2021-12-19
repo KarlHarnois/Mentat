@@ -1,6 +1,29 @@
 import SwiftUI
 
 extension View {
+    func push<Item, Content: View>(_ item: Binding<Item?>,
+                                   @ViewBuilder destination: (Item) -> Content) -> some View {
+        let isActive = Binding<Bool> {
+            item.wrappedValue != nil
+        } set: { isActive in
+            if isActive { return }
+            item.wrappedValue = nil
+        }
+
+        let link = NavigationLink(isActive: isActive) {
+            if let item = item.wrappedValue {
+                destination(item)
+            }
+        } label: {
+            EmptyView()
+        }
+
+        return ZStack {
+            link
+            self
+        }
+    }
+
     func alert(_ error: Binding<IdentifiableError?>) -> some View {
         alert(item: error) { error in
             Alert(
