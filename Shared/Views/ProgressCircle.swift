@@ -1,7 +1,7 @@
 import SwiftUI
 
 fileprivate struct Constants {
-    static let lineWidth: CGFloat = 10
+    static let lineWidth: CGFloat = 7
 }
 
 struct ProgressCircle<Content: View>: View {
