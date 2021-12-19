@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ExpenseSummaryView: View {
+struct BudgetSummaryTitleView: View {
     let summary: TransactionSummary?
 
     var body: some View {

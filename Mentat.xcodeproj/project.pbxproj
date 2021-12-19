@@ -132,8 +132,8 @@
 		CBFA688627587C77009FD554 /* MonthYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688327587C71009FD554 /* MonthYear.swift */; };
 		CBFA68892758860E009FD554 /* TransactionDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA6887275885FA009FD554 /* TransactionDownloader.swift */; };
 		CBFA688A2758860E009FD554 /* TransactionDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA6887275885FA009FD554 /* TransactionDownloader.swift */; };
-		CBFA688D27596730009FD554 /* ExpenseSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */; };
-		CBFA688E27596731009FD554 /* ExpenseSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */; };
+		CBFA688D27596730009FD554 /* BudgetSummaryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688B27596714009FD554 /* BudgetSummaryTitleView.swift */; };
+		CBFA688E27596731009FD554 /* BudgetSummaryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688B27596714009FD554 /* BudgetSummaryTitleView.swift */; };
 		CBFA6891275969F8009FD554 /* Envelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688F275969BB009FD554 /* Envelope.swift */; };
 		CBFA6892275969F9009FD554 /* Envelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA688F275969BB009FD554 /* Envelope.swift */; };
 		CBFA689527596A9C009FD554 /* EnvelopeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA689327596A4E009FD554 /* EnvelopeRepository.swift */; };
@@ -245,7 +245,7 @@
 		CBFA687F27587841009FD554 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		CBFA688327587C71009FD554 /* MonthYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYear.swift; sourceTree = "<group>"; };
 		CBFA6887275885FA009FD554 /* TransactionDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDownloader.swift; sourceTree = "<group>"; };
-		CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSummaryView.swift; sourceTree = "<group>"; };
+		CBFA688B27596714009FD554 /* BudgetSummaryTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSummaryTitleView.swift; sourceTree = "<group>"; };
 		CBFA688F275969BB009FD554 /* Envelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Envelope.swift; sourceTree = "<group>"; };
 		CBFA689327596A4E009FD554 /* EnvelopeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvelopeRepository.swift; sourceTree = "<group>"; };
 		CBFA689727596AC1009FD554 /* EnvelopeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvelopeInteractor.swift; sourceTree = "<group>"; };
@@ -527,7 +527,7 @@
 			children = (
 				CB1168EB276EB85F00C272DB /* Arc.swift */,
 				CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */,
-				CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */,
+				CBFA688B27596714009FD554 /* BudgetSummaryTitleView.swift */,
 				CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */,
 				CB1168E7276E9DF900C272DB /* ProgressCircle.swift */,
 				CBBB4AE927553C48001F5F63 /* RootView.swift */,
@@ -834,7 +834,7 @@
 				CBFA685A2757EAEB009FD554 /* LoggerEvent.swift in Sources */,
 				CB0B3A3727694C3300BC43EA /* Date+extension.swift in Sources */,
 				CBFA689527596A9C009FD554 /* EnvelopeRepository.swift in Sources */,
-				CBFA688D27596730009FD554 /* ExpenseSummaryView.swift in Sources */,
+				CBFA688D27596730009FD554 /* BudgetSummaryTitleView.swift in Sources */,
 				CB2394412768055500CD9ACB /* typealiases.swift in Sources */,
 				CBFA68692757F4A7009FD554 /* Loggable.swift in Sources */,
 				CB03FF7D2755494500AF4262 /* Category.swift in Sources */,
@@ -864,7 +864,7 @@
 				CBC24E852760DAD700B2A796 /* MonthYearPicker.swift in Sources */,
 				CBFA68712757F91B009FD554 /* TransactionSummary.swift in Sources */,
 				CBFA684E2757E5C7009FD554 /* Error+extension.swift in Sources */,
-				CBFA688E27596731009FD554 /* ExpenseSummaryView.swift in Sources */,
+				CBFA688E27596731009FD554 /* BudgetSummaryTitleView.swift in Sources */,
 				CB6A40CB2759AB1A00624502 /* Settings.swift in Sources */,
 				CB2394352765050400CD9ACB /* TransactionList.swift in Sources */,
 				CBFA68582757EA6E009FD554 /* CurlComponent.swift in Sources */,

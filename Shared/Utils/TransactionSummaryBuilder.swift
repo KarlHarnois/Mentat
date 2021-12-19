@@ -16,6 +16,8 @@ struct TransactionSummaryBuilder {
             }
 
             guard let category = transaction.category else {
+                summary.uncategorizedTransactions.append(transaction)
+
                 if transaction.isPersonalExpense {
                     summary.uncategorizedExpenseTotal += total
                 }

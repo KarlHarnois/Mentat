@@ -11,7 +11,7 @@ struct BudgetSummaryScreen: View {
                     monthYearPicker
                 }
 
-                expenseSummarySection
+                titleView
 
                 if let summary = viewModel.state.summary {
                     categoryGrid(for: summary)
@@ -35,9 +35,9 @@ struct BudgetSummaryScreen: View {
         }
     }
 
-    private var expenseSummarySection: some View {
+    private var titleView: some View {
         Section {
-            ExpenseSummaryView(summary: viewModel.state.summary)
+            BudgetSummaryTitleView(summary: viewModel.state.summary)
                 .listRowBackground(Color.clear)
         }
     }
@@ -50,6 +50,10 @@ struct BudgetSummaryScreen: View {
             ForEach(summary.categorySections) { section in
                 CategorySummaryProgressView(summary: section)
             }
+            CategorySummaryProgressView(
+                uncategorizedTransactions: summary.uncategorizedTransactions,
+                total: summary.uncategorizedExpenseTotal
+            )
         }
         .listRowInsets(.init())
     }

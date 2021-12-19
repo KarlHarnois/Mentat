@@ -6,10 +6,10 @@ fileprivate struct Constants {
 
 struct ProgressCircle<Content: View>: View {
     let value: Int
-    let total: Int
+    let total: Int?
     let content: Content
 
-    init(value: Int, total: Int, @ViewBuilder content: () -> Content) {
+    init(value: Int, total: Int? = nil, @ViewBuilder content: () -> Content) {
         self.value = value
         self.total = total
         self.content = content()
@@ -17,29 +17,41 @@ struct ProgressCircle<Content: View>: View {
 
     var body: some View {
         ZStack {
-            Circle()
-                .strokeBorder(lineWidth: Constants.lineWidth)
-                .opacity(0.1)
-                .foregroundColor(.primary)
-
-            Arc(endAngle: .degrees(progress))
-                .strokeBorder(style: StrokeStyle(
-                    lineWidth: Constants.lineWidth,
-                    lineCap: .round,
-                    lineJoin: .round
-                ))
-                .foregroundColor(strokeColor)
-
+            backgroundCircle
+            progressStroke
             content
         }
         .aspectRatio(1, contentMode: .fit)
     }
 
-    private var progress: Double {
-        (Double(value) / Double(total)) * 360
+    private var backgroundCircle: some View {
+        Circle()
+            .strokeBorder(lineWidth: Constants.lineWidth)
+            .opacity(0.1)
+            .foregroundColor(.primary)
+    }
+
+    private var progressStroke: some View {
+        Group {
+            if let progress = progress {
+                Arc(endAngle: .degrees(progress))
+                    .strokeBorder(style: StrokeStyle(
+                        lineWidth: Constants.lineWidth,
+                        lineCap: .round,
+                        lineJoin: .round
+                    ))
+                    .foregroundColor(strokeColor)
+            }
+        }
+    }
+
+    private var progress: Double? {
+        total.map { total in
+            (Double(value) / Double(total)) * 360
+        }
     }
 
     private var strokeColor: Color {
-        value > total ? .pink : .green
+        value > (total ?? 0) ? .pink : .green
     }
 }

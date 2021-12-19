@@ -24,6 +24,10 @@ final class TransactionSummaryBuilderTests: XCTestCase {
         XCTAssertEqual(summary.transactions, transactions)
     }
 
+    func testUncategorizedTransactions() {
+        XCTAssertEqual(summary.uncategorizedTransactions.map(\.id), ["8", "9", "10"])
+    }
+
     func testTotal() {
         XCTAssertEqual(summary.total, 3760)
     }

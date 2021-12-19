@@ -5,7 +5,35 @@ fileprivate struct Constants {
 }
 
 struct CategorySummaryProgressView: View {
-    let summary: CategoryTransactionSummary
+    let state: State
+
+    struct State {
+        let title: String
+        let imageName: String
+        let currentAmount: CentAmount
+        let budgetedAmount: CentAmount?
+        let transactions: [Transaction]
+    }
+
+    init(summary: CategoryTransactionSummary) {
+        self.state = .init(
+            title: summary.category.name,
+            imageName: summary.category.imageName,
+            currentAmount: summary.total,
+            budgetedAmount: 50000,
+            transactions: summary.transactions
+        )
+    }
+
+    init(uncategorizedTransactions: [Transaction], total: CentAmount) {
+        self.state = .init(
+            title: "Uncategorized",
+            imageName: "questionmark.diamond.fill",
+            currentAmount: total,
+            budgetedAmount: nil,
+            transactions: uncategorizedTransactions
+        )
+    }
 
     var body: some View {
         ZStack {
@@ -27,9 +55,9 @@ struct CategorySummaryProgressView: View {
                     .frame(width: geo.size.width * 0.50, alignment: .center)
 
                 VStack(spacing: 0) {
-                    Text(summary.category.name)
+                    Text(state.title)
 
-                    Text("\(summary.total.formattedMoney) / \(500)")
+                    Text(amountLabel)
                         .foregroundColor(.secondary)
                         .font(.callout)
                 }
@@ -38,10 +66,22 @@ struct CategorySummaryProgressView: View {
         }
     }
 
-    private var progressCircle: some View {
-        ProgressCircle(value: summary.total, total: 50000) {
-            Image(systemName: summary.category.imageName)
-                .font(.title)
+    private var amountLabel: String {
+        if let budget = state.budgetedAmount {
+            return "\(state.currentAmount.formattedMoney) / \(budget.formattedMoney)"
+        } else {
+            return state.currentAmount.formattedMoney
         }
+    }
+
+    private var progressCircle: some View {
+        ProgressCircle(value: state.currentAmount, total: state.budgetedAmount) {
+            icon
+        }
+    }
+
+    private var icon: some View {
+        Image(systemName: state.imageName)
+            .font(.title)
     }
 }
