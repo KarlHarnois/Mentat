@@ -47,7 +47,8 @@ struct ProgressCircle<Content: View>: View {
 
     private var progress: Double? {
         total.map { total in
-            (Double(value) / Double(total)) * 360
+            let progress = (Double(value) / Double(total)) * 360
+            return min(progress, 360)
         }
     }
 
