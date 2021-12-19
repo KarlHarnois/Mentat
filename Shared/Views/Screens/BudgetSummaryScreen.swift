@@ -6,24 +6,13 @@ struct BudgetSummaryScreen: View {
 
     var body: some View {
         NavigationView {
-            List {
-                if viewModel.state.isPresentingMonthYearPicker {
-                    monthYearPicker
-                }
-
-                titleView
-
-                if let summary = viewModel.state.summary {
-                    categoryGrid(for: summary)
-                        .listRowBackground(Color.clear)
-                }
+            ZStack {
+                list
+                uncategorizedDetailsLink
             }
-            .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
             .navigationBarItems(leading: monthYearButton,trailing: settingsButton)
             .navigationTitle("")
-            .onSwipeRight(perform: settings.goToPreviousMonth)
-            .onSwipeLeft(perform: settings.goToNextMonth)
             .onLoad {
                 viewModel.send(.refresh)
             }
@@ -31,6 +20,35 @@ struct BudgetSummaryScreen: View {
                 CategorySummaryScreen(summary: summary)
             }
         }
+    }
+
+    private var list: some View {
+        List {
+            if viewModel.state.isPresentingMonthYearPicker {
+                monthYearPicker
+            }
+
+            titleView
+
+            if let summary = viewModel.state.summary {
+                categoryGrid(for: summary)
+                    .listRowBackground(Color.clear)
+            }
+        }
+        .listStyle(.insetGrouped)
+        .onSwipeRight(perform: settings.goToPreviousMonth)
+        .onSwipeLeft(perform: settings.goToNextMonth)
+    }
+
+    private var uncategorizedDetailsLink: some View {
+        NavigationLink(
+            isActive: $viewModel.state.isPresentingUncategorized,
+            destination: {
+                let transactions = viewModel.state.summary?.uncategorizedTransactions ?? []
+                CategorySummaryScreen(uncategorizedTransactions: transactions)
+            },
+            label: {}
+        )
     }
 
     private var monthYearPicker: some View {
@@ -60,6 +78,9 @@ struct BudgetSummaryScreen: View {
                 uncategorizedTransactions: summary.uncategorizedTransactions,
                 total: summary.uncategorizedExpenseTotal
             )
+            .onTapGesture {
+                viewModel.send(.presentUncategorized)
+            }
         }
         .listRowInsets(.init())
     }
