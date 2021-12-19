@@ -12,4 +12,12 @@ final class Settings: ObservableObject {
 
         self.monthYear = .init(month: month, year: year)
     }
+
+    func goToPreviousMonth() {
+        monthYear = monthYear.previousMonth
+    }
+
+    func goToNextMonth() {
+        monthYear = monthYear.nextMonth
+    }
 }

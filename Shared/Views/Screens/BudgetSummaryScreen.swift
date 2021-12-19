@@ -21,6 +21,8 @@ struct BudgetSummaryScreen: View {
             .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
             .navigationBarItems(leading: monthYearButton,trailing: settingsButton)
+            .onSwipeRight(perform: settings.goToPreviousMonth)
+            .onSwipeLeft(perform: settings.goToNextMonth)
             .onLoad {
                 viewModel.send(.refresh)
             }
@@ -50,12 +52,6 @@ struct BudgetSummaryScreen: View {
             }
         }
         .listRowInsets(.init())
-    }
-
-    private func formattedMoney(_ centAmount: Int?) -> some View {
-        let formatter = MoneyFormatter()
-        let string = formatter.string(centAmount: centAmount ?? 0)
-        return Text(string)
     }
 
     private var monthYearButton: some View {
