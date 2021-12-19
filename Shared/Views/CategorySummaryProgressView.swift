@@ -24,7 +24,7 @@ struct CategorySummaryProgressView: View {
         GeometryReader { geo in
             VStack(alignment: .center, spacing: 15) {
                 progressCircle
-                    .frame(width: geo.size.width * 0.55, alignment: .center)
+                    .frame(width: geo.size.width * 0.57, alignment: .center)
 
                 Text(summary.category.name)
             }
