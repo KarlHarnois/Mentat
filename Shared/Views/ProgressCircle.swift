@@ -40,6 +40,6 @@ struct ProgressCircle<Content: View>: View {
     }
 
     private var strokeColor: Color {
-        value > total ? .red : .green
+        value > total ? .pink : .green
     }
 }
