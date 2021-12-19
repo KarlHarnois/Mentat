@@ -43,7 +43,7 @@ struct BudgetSummaryScreen: View {
     }
 
     private func categoryGrid(for summary: TransactionSummary) -> some View {
-        let spacing: CGFloat = 15
+        let spacing: CGFloat = 20
         let items = [GridItem(spacing: spacing), GridItem(spacing: spacing)]
 
         return LazyVGrid(columns: items, spacing: spacing) {

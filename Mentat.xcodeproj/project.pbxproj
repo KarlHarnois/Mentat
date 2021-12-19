@@ -40,6 +40,8 @@
 		CB0B3A3B276D336500BC43EA /* CategorySummaryProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */; };
 		CB1168E8276E9DF900C272DB /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168E7276E9DF900C272DB /* ProgressCircle.swift */; };
 		CB1168E9276E9DF900C272DB /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168E7276E9DF900C272DB /* ProgressCircle.swift */; };
+		CB1168EC276EB85F00C272DB /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168EB276EB85F00C272DB /* Arc.swift */; };
+		CB1168ED276EB85F00C272DB /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168EB276EB85F00C272DB /* Arc.swift */; };
 		CB2394342765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394352765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394412768055500CD9ACB /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394402768055400CD9ACB /* typealiases.swift */; };
@@ -190,6 +192,7 @@
 		CB0B3A3627694C3300BC43EA /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySummaryProgressView.swift; sourceTree = "<group>"; };
 		CB1168E7276E9DF900C272DB /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
+		CB1168EB276EB85F00C272DB /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		CB2394332765050400CD9ACB /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		CB2394402768055400CD9ACB /* typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typealiases.swift; sourceTree = "<group>"; };
 		CB239443276808CA00CD9ACB /* TransactionDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDay.swift; sourceTree = "<group>"; };
@@ -526,6 +529,7 @@
 				CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */,
 				CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */,
 				CB1168E7276E9DF900C272DB /* ProgressCircle.swift */,
+				CB1168EB276EB85F00C272DB /* Arc.swift */,
 				CBE39187276D360500F1FCED /* Screens */,
 			);
 			path = Views;
@@ -783,6 +787,7 @@
 			files = (
 				CBBB4B2D2755451B001F5F63 /* RootView.swift in Sources */,
 				CB1168E8276E9DF900C272DB /* ProgressCircle.swift in Sources */,
+				CB1168EC276EB85F00C272DB /* Arc.swift in Sources */,
 				CB03FFBC27557D5400AF4262 /* Request.swift in Sources */,
 				CB5C7B3C2755CE8800552511 /* BudgetSummaryScreen.swift in Sources */,
 				CBE3918D276D37BE00F1FCED /* SubcategoryTransactionSummary.swift in Sources */,
@@ -861,6 +866,7 @@
 				CBFA68582757EA6E009FD554 /* CurlComponent.swift in Sources */,
 				CBE3918B276D37B500F1FCED /* CategoryTransactionSummary.swift in Sources */,
 				CBC24E962760F5BD00B2A796 /* Storage.swift in Sources */,
+				CB1168ED276EB85F00C272DB /* Arc.swift in Sources */,
 				CB03FF7B2755492800AF4262 /* TransactionSource.swift in Sources */,
 				CBE3918E276D37BE00F1FCED /* SubcategoryTransactionSummary.swift in Sources */,
 				CB5D82152756F7C100C12E13 /* Request.swift in Sources */,

@@ -1,7 +1,7 @@
 import SwiftUI
 
 fileprivate struct Constants {
-    static let lineWidth: CGFloat = 10
+    static let lineWidth: CGFloat = 8
 }
 
 struct ProgressCircle<Content: View>: View {
@@ -18,27 +18,25 @@ struct ProgressCircle<Content: View>: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(lineWidth: Constants.lineWidth)
+                .strokeBorder(lineWidth: Constants.lineWidth)
                 .opacity(0.3)
                 .foregroundColor(tint)
 
-            Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
-                .stroke(style: StrokeStyle(
+            Arc(endAngle: .degrees(progress))
+                .strokeBorder(style: StrokeStyle(
                     lineWidth: Constants.lineWidth,
                     lineCap: .round,
                     lineJoin: .round
                 ))
                 .foregroundColor(tint)
-                .rotationEffect(Angle(degrees: 270.0))
 
             content
         }
-        .frame(width: 100, height: 100)
+        .aspectRatio(1, contentMode: .fit)
     }
 
-    private var progress: Float {
-        Float(value) / Float(total)
+    private var progress: Double {
+        (Double(value) / Double(total)) * 360
     }
 
     private var tint: Color {

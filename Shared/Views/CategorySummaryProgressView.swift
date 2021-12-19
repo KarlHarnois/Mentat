@@ -1,29 +1,47 @@
 import SwiftUI
 
+fileprivate struct Constants {
+    static let cornerRadius: CGFloat = 20
+}
+
 struct CategorySummaryProgressView: View {
     let summary: CategoryTransactionSummary
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
+            roundedSquare
+            content
+        }
+    }
 
-            VStack(alignment: .center) {
-                ProgressCircle(value: summary.total, total: 50000) {
-                    VStack {
-                        Text(summary.total.formattedMoney)
-                            .bold()
+    private var roundedSquare: some View {
+        RoundedRectangle(cornerRadius: Constants.cornerRadius)
+            .foregroundColor(Color(.secondarySystemGroupedBackground))
+            .aspectRatio(1, contentMode: .fit)
+    }
 
-                        Text("/ \(500)")
-                            .foregroundColor(.secondary)
-                            .font(.caption)
-                    }
-                }
-                .padding(.vertical, 10)
+    private var content: some View {
+        GeometryReader { geo in
+            VStack(alignment: .center, spacing: 15) {
+                progressCircle
+                    .frame(width: geo.size.width * 0.55, alignment: .center)
 
                 Text(summary.category.name)
             }
-            .padding()
+            .position(x: geo.size.width / 2, y: geo.size.height / 2)
+        }
+    }
+
+    private var progressCircle: some View {
+        ProgressCircle(value: summary.total, total: 50000) {
+            VStack {
+                Text(summary.total.formattedMoney)
+                    .bold()
+
+                Text("/ \(500)")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
         }
     }
 }
