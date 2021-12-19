@@ -42,6 +42,7 @@
 		CB1168E9276E9DF900C272DB /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168E7276E9DF900C272DB /* ProgressCircle.swift */; };
 		CB1168EC276EB85F00C272DB /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168EB276EB85F00C272DB /* Arc.swift */; };
 		CB1168ED276EB85F00C272DB /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168EB276EB85F00C272DB /* Arc.swift */; };
+		CB1168EF276EBC1E00C272DB /* MoneyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1168EE276EBC1E00C272DB /* MoneyFormatterTests.swift */; };
 		CB2394342765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394352765050400CD9ACB /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394332765050400CD9ACB /* TransactionList.swift */; };
 		CB2394412768055500CD9ACB /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2394402768055400CD9ACB /* typealiases.swift */; };
@@ -193,6 +194,7 @@
 		CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySummaryProgressView.swift; sourceTree = "<group>"; };
 		CB1168E7276E9DF900C272DB /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		CB1168EB276EB85F00C272DB /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
+		CB1168EE276EBC1E00C272DB /* MoneyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatterTests.swift; sourceTree = "<group>"; };
 		CB2394332765050400CD9ACB /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		CB2394402768055400CD9ACB /* typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typealiases.swift; sourceTree = "<group>"; };
 		CB239443276808CA00CD9ACB /* TransactionDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDay.swift; sourceTree = "<group>"; };
@@ -292,9 +294,9 @@
 		CB03FF742755480A00AF4262 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CB03FFC6275592C900AF4262 /* NetworkingSession.swift */,
 				CB03FFB527557BB900AF4262 /* Request.swift */,
 				CB03FFC227558E0C00AF4262 /* URLRequestBuilder.swift */,
-				CB03FFC6275592C900AF4262 /* NetworkingSession.swift */,
 				CB03FFB727557BF600AF4262 /* TransactionService */,
 			);
 			path = Networking;
@@ -325,9 +327,9 @@
 		CB03FF8227554AB100AF4262 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CB03FF8327554ABD00AF4262 /* TransactionTests.swift */,
 				CBC24E7E2760D8B500B2A796 /* MonthTests.swift */,
 				CBC24E802760D95900B2A796 /* MonthYearTests.swift */,
+				CB03FF8327554ABD00AF4262 /* TransactionTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,10 +371,10 @@
 		CB03FFA72755781500AF4262 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CB6A40C92759AA1300624502 /* Settings.swift */,
-				CB03FFA82755782600AF4262 /* Secrets.swift */,
-				CB5C7B342755CA1900552511 /* MoneyFormatter.swift */,
 				CB9F099F2756F2A200B9344B /* LaunchArgument.swift */,
+				CB5C7B342755CA1900552511 /* MoneyFormatter.swift */,
+				CB03FFA82755782600AF4262 /* Secrets.swift */,
+				CB6A40C92759AA1300624502 /* Settings.swift */,
 				CBE3918F276D3AE500F1FCED /* TransactionSummaryBuilder.swift */,
 				CBFA68552757EA45009FD554 /* Logging */,
 				CB03FF982755559400AF4262 /* Extensions */,
@@ -383,6 +385,7 @@
 		CB03FFAC27557A0500AF4262 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CB1168EE276EBC1E00C272DB /* MoneyFormatterTests.swift */,
 				CB03FFAD27557A1300AF4262 /* SecretsTests.swift */,
 				CBE39192276D3AF100F1FCED /* TransactionSummaryBuilderTests.swift */,
 			);
@@ -392,10 +395,10 @@
 		CB03FFB727557BF600AF4262 /* TransactionService */ = {
 			isa = PBXGroup;
 			children = (
-				CB03FFB127557B4700AF4262 /* TransactionServiceClient.swift */,
-				CB03FFB327557B9700AF4262 /* FetchTransactionsRequest.swift */,
 				CB5D82182757200700C12E13 /* CreateSessionRequest.swift */,
+				CB03FFB327557B9700AF4262 /* FetchTransactionsRequest.swift */,
 				CB5D821B2757203A00C12E13 /* Session.swift */,
+				CB03FFB127557B4700AF4262 /* TransactionServiceClient.swift */,
 			);
 			path = TransactionService;
 			sourceTree = "<group>";
@@ -428,10 +431,10 @@
 		CB5D822127572A9200C12E13 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				CB5D822227572A9B00C12E13 /* TransactionRepository.swift */,
-				CBFA689327596A4E009FD554 /* EnvelopeRepository.swift */,
 				CBFA689727596AC1009FD554 /* EnvelopeInteractor.swift */,
+				CBFA689327596A4E009FD554 /* EnvelopeRepository.swift */,
 				CBFA6887275885FA009FD554 /* TransactionDownloader.swift */,
+				CB5D822227572A9B00C12E13 /* TransactionRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -522,14 +525,14 @@
 		CBBB4B2A275544BB001F5F63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CBBB4AE927553C48001F5F63 /* RootView.swift */,
-				CB5D823027572B4C00C12E13 /* TransactionRow.swift */,
-				CB2394332765050400CD9ACB /* TransactionList.swift */,
+				CB1168EB276EB85F00C272DB /* Arc.swift */,
+				CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */,
 				CBFA688B27596714009FD554 /* ExpenseSummaryView.swift */,
 				CBC24E822760DA6F00B2A796 /* MonthYearPicker.swift */,
-				CB0B3A39276D336500BC43EA /* CategorySummaryProgressView.swift */,
 				CB1168E7276E9DF900C272DB /* ProgressCircle.swift */,
-				CB1168EB276EB85F00C272DB /* Arc.swift */,
+				CBBB4AE927553C48001F5F63 /* RootView.swift */,
+				CB2394332765050400CD9ACB /* TransactionList.swift */,
+				CB5D823027572B4C00C12E13 /* TransactionRow.swift */,
 				CBE39187276D360500F1FCED /* Screens */,
 			);
 			path = Views;
@@ -770,6 +773,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB03FFCD275593FE00AF4262 /* MockNetworkingSession.swift in Sources */,
+				CB1168EF276EBC1E00C272DB /* MoneyFormatterTests.swift in Sources */,
 				CB03FF9227554C8000AF4262 /* TransactionTests.swift in Sources */,
 				CBC24E7F2760D8B500B2A796 /* MonthTests.swift in Sources */,
 				CBC24E982760F67100B2A796 /* MockStorage.swift in Sources */,

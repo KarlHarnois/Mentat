@@ -1,5 +1,5 @@
 extension Int {
     var formattedMoney: String {
-        MoneyFormatter().string(centAmount: self)
+        MoneyFormatter(decimalStyle: .short).string(centAmount: self)
     }
 }
