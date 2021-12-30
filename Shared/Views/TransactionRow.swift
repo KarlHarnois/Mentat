@@ -2,6 +2,11 @@ import SwiftUI
 
 struct TransactionRow: View {
     let transaction: Transaction
+    var components = Components.allCases
+
+    enum Components: CaseIterable {
+        case category
+    }
 
     var body: some View {
         HStack {
@@ -9,13 +14,17 @@ struct TransactionRow: View {
             Spacer()
             Text(formattedAmount)
         }
+        .padding(.vertical, 5)
     }
 
     private var leftStack: some View {
         VStack(alignment: .leading) {
             Text(transaction.description)
             idLabel
-            categoryLabel
+
+            if components.contains(.category) {
+                categoryLabel
+            }
         }
     }
 

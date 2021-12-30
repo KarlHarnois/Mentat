@@ -13,7 +13,9 @@ struct TransactionList: View {
 
     private func section(for transactionDay: TransactionDay) -> some View {
         Section(header: Text(String(transactionDay.day))) {
-            ForEach(transactionDay.transactions, content: TransactionRow.init)
+            ForEach(transactionDay.transactions) { transaction in
+                TransactionRow(transaction: transaction, components: [])
+            }
         }
     }
 

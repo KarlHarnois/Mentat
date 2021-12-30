@@ -6,27 +6,49 @@ struct BudgetSummaryScreen: View {
 
     var body: some View {
         NavigationView {
-            List {
-                if viewModel.state.isPresentingMonthYearPicker {
-                    monthYearPicker
-                }
-
-                titleView
-
-                if let summary = viewModel.state.summary {
-                    categoryGrid(for: summary)
-                        .listRowBackground(Color.clear)
-                }
+            ZStack {
+                list
+                uncategorizedDetailsLink
             }
-            .listStyle(.insetGrouped)
             .alert($viewModel.state.error)
             .navigationBarItems(leading: monthYearButton,trailing: settingsButton)
-            .onSwipeRight(perform: settings.goToPreviousMonth)
-            .onSwipeLeft(perform: settings.goToNextMonth)
+            .navigationTitle("")
             .onLoad {
                 viewModel.send(.refresh)
             }
+            .push($viewModel.state.presentedSummary) { summary in
+                CategorySummaryScreen(summary: summary)
+            }
         }
+    }
+
+    private var list: some View {
+        List {
+            if viewModel.state.isPresentingMonthYearPicker {
+                monthYearPicker
+            }
+
+            titleView
+
+            if let summary = viewModel.state.summary {
+                categoryGrid(for: summary)
+                    .listRowBackground(Color.clear)
+            }
+        }
+        .listStyle(.insetGrouped)
+        .onSwipeRight(perform: settings.goToPreviousMonth)
+        .onSwipeLeft(perform: settings.goToNextMonth)
+    }
+
+    private var uncategorizedDetailsLink: some View {
+        NavigationLink(
+            isActive: $viewModel.state.isPresentingUncategorized,
+            destination: {
+                let transactions = viewModel.state.summary?.uncategorizedTransactions ?? []
+                CategorySummaryScreen(uncategorizedTransactions: transactions)
+            },
+            label: {}
+        )
     }
 
     private var monthYearPicker: some View {
@@ -48,12 +70,17 @@ struct BudgetSummaryScreen: View {
 
         return LazyVGrid(columns: items, spacing: spacing) {
             ForEach(summary.categorySections) { section in
-                CategorySummaryProgressView(summary: section)
+                CategorySummaryProgressView(summary: section).onTapGesture {
+                    viewModel.send(.present(section))
+                }
             }
             CategorySummaryProgressView(
                 uncategorizedTransactions: summary.uncategorizedTransactions,
                 total: summary.uncategorizedExpenseTotal
             )
+            .onTapGesture {
+                viewModel.send(.presentUncategorized)
+            }
         }
         .listRowInsets(.init())
     }
