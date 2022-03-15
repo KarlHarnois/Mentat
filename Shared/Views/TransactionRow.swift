@@ -2,9 +2,9 @@ import SwiftUI
 
 struct TransactionRow: View {
     let transaction: Transaction
-    var components = Components.allCases
+    var components = Component.allCases
 
-    enum Components: CaseIterable {
+    enum Component: CaseIterable {
         case category
     }
 
@@ -15,38 +15,38 @@ struct TransactionRow: View {
             Text(formattedAmount)
         }
         .padding(.vertical, 5)
+        .onAppear {
+            print(transaction.timestamps.authorizedAt)
+        }
     }
 
     private var leftStack: some View {
         VStack(alignment: .leading) {
             Text(transaction.description)
-            idLabel
 
-            if components.contains(.category) {
-                categoryLabel
+            Group {
+                Text(transaction.timestamps.postedAt.description)
+                Text(transaction.id)
+
+                if components.contains(.category) {
+                    categoryLabel
+                }
             }
-        }
-    }
-
-    private var idLabel: some View {
-        Text(transaction.id)
             .foregroundColor(.secondary)
             .font(.caption)
+        }
     }
 
     private var categoryLabel: some View {
         Group {
             categories.map {
                 Text($0)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
             }
         }
     }
 
     private var formattedAmount: String {
-        let formatter = MoneyFormatter(currency: .cad)
-        return formatter.string(centAmount: transaction.centAmount)
+        transaction.centAmount.formattedMoney(currency: .cad)
     }
 
     private var categories: String? {
