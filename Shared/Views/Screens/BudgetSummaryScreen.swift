@@ -60,6 +60,7 @@ struct BudgetSummaryScreen: View {
     private var titleView: some View {
         Section {
             BudgetSummaryTitleView(summary: viewModel.state.summary)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .listRowBackground(Color.clear)
         }
     }

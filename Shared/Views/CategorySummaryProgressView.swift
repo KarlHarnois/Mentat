@@ -68,9 +68,9 @@ struct CategorySummaryProgressView: View {
 
     private var amountLabel: String {
         if let budget = state.budgetedAmount {
-            return "\(state.currentAmount.formattedMoney) / \(budget.formattedMoney)"
+            return "\(state.currentAmount.formattedMoney()) / \(budget.formattedMoney())"
         } else {
-            return state.currentAmount.formattedMoney
+            return state.currentAmount.formattedMoney()
         }
     }
 

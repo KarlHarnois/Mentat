@@ -16,8 +16,6 @@ struct BudgetSummaryTitleView: View {
     }
 
     private var formattedTotal: String {
-        guard let total = summary?.expenseTotal else { return "—" }
-        let formatter = MoneyFormatter(currency: .cad)
-        return formatter.string(centAmount: total)
+        (summary?.expenseTotal).formattedMoney(currency: .cad)
     }
 }
